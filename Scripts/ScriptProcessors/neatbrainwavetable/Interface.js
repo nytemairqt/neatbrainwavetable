@@ -6,9 +6,13 @@ reg PENDING = false;
 const MIDDLE_C = 261.63;
 const ROOT = FileSystem.getFolder(FileSystem.AudioFiles);
 const SAMPLES = FileSystem.getFolder(FileSystem.Samples);
+const SAMPLEMAPS = FileSystem.getFolder(FileSystem.Samples).getParentDirectory().getChildFile("sampleMaps");
 const WAVETABLES = SAMPLES.getChildFile("wavetables");
 reg TARGET = 440.0;
 const keyRange = [12, 17, 22, 27, 32, 37, 42, 47, 52, 57, 62, 67, 72, 77, 82, 88];
+const Sampler1 = Synth.getChildSynth("Sampler1");
+
+reg testSample;
 
 // Instantiate Loris Engine
 const worker = Engine.createBackgroundTask("Loris Processor");
@@ -94,7 +98,7 @@ function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh)
 	
 	// Current Format: rootHz_rootKeyNum_RRGroup_articulation.wav
 	// ideal format: hz{}_root{}_rr{}_vl{}_vh{}_petName.wav
-	var fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + rrGroup + "_vl" + vl + "_vh" + vh + "_" + file.toString(3);
+	var fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + vl + "_vh" + vh + "_" + file.toString(3);
 	var path = WAVETABLES.getChildFile(fileName);	
 	saveAudio(path, output);	
 	Console.print("Wrote to file");
@@ -107,65 +111,78 @@ function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh)
 function buildSampleMap(sampleMapName)
 {
 	// XML Constants
-	var header = '<?xml version="1.0" encoding="UTF-8"?>';	
-	var sampleMapID = '<samplemap ID="' + sampleMapName + '">';
+	var sampleMapID = sampleMapName;
 	var footer = '</samplemap>';
 	
 	// Sample Properties
 	var prefix;
+	var xmlFile = SAMPLEMAPS.getChildFile("wavetables.xml");
 	var name;
+	var path;
 	var lowKey;
 	var highKey;
 	var lowVel = 1;
 	var highVel = 127;	
 	var rrGroup;
 	var rootNote;
+	var idx;
+	var subString;
 	var hz;
 	var pitch;
 	var sampleStart = 0;
 	var loopStart;
 	var loopEnd;
-	var loopFade;	
+	var loopFade;		
 	
-	var jsonData = {
-		"header" : header,
-		"sampleMapID" : sampleMapID,
-		"footer" : footer,
-	};
-	
-	
-	
+	// Load and setup SampleMap
 	var samples = FileSystem.findFiles(WAVETABLES, "*.wav", false);
+	var sampleMapToLoad = SAMPLEMAPS.getChildFile("wavetables.xml");
+			
+	// Load Sample Map
+	Sampler1.asSampler().loadSampleMap(sampleMapToLoad.toString(0));
 	
-	for (sample in samples)
+	// Clear SampleMap (Make Sure it's empty)
+	var selection = Sampler1.asSampler().createSelection(".*");
+	for (s in selection)
+		s.deleteSample();
+	
+	//var loadedSamples = Sampler1.asSampler().importSamples(["{PROJECT_FOLDER}wavetables/hz16_root12_rr1_vl1_vh127_01_bridgeLeft.wav"], true);
+	
+	//for (sample in samples)
+	for (i=0; i<samples.length; i++)
 	{
 		// Format: rootHz_rootKeyNum_RRGroup_articulation.wav
 		// ideal format: hz{}_root{}_rr{}_vl{}_vh{}_petName.wav
 			
 		// Grab File Name
 		prefix = "{PROJECT_FOLDER}wavetables/";
-		name = sample.toString(3);
+		name = samples[i].toString(3);
+		path = prefix + name;
+		
+		Console.print(path);
 		
 		// Parse RootNote as Int
-		rootNote = name.substring(name.indexOf("_") + 1, name.indexOf("_") + 3);
-		rootNote = Math.round(rootNote);
+		idx = name.indexOf("root") + 4;
 		
-		
+		rootNote = name.substring(name.indexOf("_") + 1, name.indexOf("_") + 3);		
+		rootNote = name.substring(idx, idx+2);
+		rootNote = Math.round(rootNote);			
+				
 		// Calculate KeySpan
 		if (rootNote == 12)
 		{
 			lowKey = rootNote;
-			highKey = rootNote + 3;
+			highKey = rootNote + 2;
 		}
 		if (rootNote == 88)
 		{
-			lowKey = rootNote - 3;
+			lowKey = rootNote - 2;
 			highKey = rootNote;					
 		}
 		else
 		{
 			lowKey = rootNote - 2;
-			highKey = rootNote + 3;	
+			highKey = rootNote + 2;	
 		}
 		
 		// Calculate Single Cycle
@@ -178,30 +195,31 @@ function buildSampleMap(sampleMapName)
 		loopEnd = loopStart + cycle;
 		loopFade = Math.round(cycle / 2); // TWEAK ME
 		
-		rrGroup = name.substring(name.lastIndexOf("_") - 2, name.lastIndexOf("_"));
-		rrGroup = Math.round(rrGroup);
-		print(["RRGroup : " + rrGroup]);
-		
-		print(["Loopstart: " + loopStart, "LoopEnd: " + loopEnd, "LoopFade: " + loopFade]);
-		
-		// Start Writing XML
+		// Parse RR Group
+		idx = name.indexOf("rr") + 2;
+		subString = name.substring(idx, idx+10); // pad for RR Groups > 10
+		rrGroup = subString.substring(0, subString.indexOf("_"));
+		rrGroup = Math.round(rrGroup);			
 		
 		
+		// Testing Sampler
+		
+		var importedSample = Sampler1.asSampler().importSamples([path], true);
+		
+		for (s in importedSample)
+		{
+			// LOW (IDK Why this needs to loop but it does)
+			for (x = 3; x < 5; x++)
+			{
+				s.set(x, lowKey);
+			}
+			
+			s.set(2, rootNote); // ROOT
+			s.set(3, highKey); // HIGH
 
-	/* example sample string
-	
-	TRIMMED VERSION
-	<sample Root="95" LoKey="95" HiKey="95" LoVel="0" HiVel="127" RRGroup="1"
-			          FileName="{EXP::Aetheric}B5_AngelicA.wav" LoopEnabled="1"
-			          LoopStart="84955" LoopEnd="583132" LoopXFade="43330"/>
-		
-		<sample Root="95" LoKey="95" HiKey="95" LoVel="0" HiVel="127" RRGroup="1"
-		          FileName="{EXP::Aetheric}B5_AngelicA.wav" Duplicate="0" LoopEnabled="1"
-		          LoopStart="84955" LoopEnd="583132" LoopXFade="43330" SampleStartMod="705600"
-		          SampleEnd="705600" MonolithOffset="0" MonolithLength="708608"
-		          SampleRate="44100.0"/>
-		
-		*/
+			s.set(5, lowVel); // VLOW
+			s.set(6, highVel); // VHIGH
+		}
 	}
 	
 }
@@ -210,19 +228,14 @@ function buildSampleMap(sampleMapName)
 inline function onButton1Control(component, value)
 {
 	if (value)
-	{
-	
-		buildSampleMap("wavetable");
-
-		// KEEP THIS
-
-		/*
-
+	{			
+		// Extract Wavetables
 		local audioFiles = FileSystem.findFiles(ROOT, "*.wav", false);
 		
 		for (i=0; i<audioFiles.length; i++)
 		{
-			for (j=0; j<keyRange.length; j++)
+			//for (j=0; j<keyRange.length; j++)
+			for (j=0; j<3; j++)
 			{
 				Console.clear();
 
@@ -237,7 +250,8 @@ inline function onButton1Control(component, value)
 		
 	Console.clear();
 	Console.print("Finished extracting Wavetables.");
-	*/
+	
+	buildSampleMap("wavetable");
 	
 	}	
 };

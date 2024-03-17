@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<samplemap ID="wavetables" RRGroupAmount="1.0" MicPositions=";" CrossfadeGamma="1.0"
+           SaveMode="0">
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz16_root12_rr1_vl1_vh127_01_bridgeLeft.wav"
+          Duplicate="1"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz16_root12_rr2_vl1_vh127_02_bridgeRight.wav"
+          Duplicate="0"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz16_root12_rr3_vl1_vh127_03_middleLeft.wav"
+          Duplicate="0"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz16_root12_rr4_vl1_vh127_04_middleRight.wav"
+          Duplicate="0"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz16_root12_rr5_vl1_vh127_05_neckLeft.wav"
+          Duplicate="0"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz16_root12_rr6_vl1_vh127_06_neckRight.wav"
+          Duplicate="0"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz22_root17_rr1_vl1_vh127_01_bridgeLeft.wav"
+          Duplicate="0"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz22_root17_rr2_vl1_vh127_02_bridgeRight.wav"
+          Duplicate="0"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz22_root17_rr3_vl1_vh127_03_middleLeft.wav"
+          Duplicate="0"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz22_root17_rr4_vl1_vh127_04_middleRight.wav"
+          Duplicate="0"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz22_root17_rr5_vl1_vh127_05_neckLeft.wav"
+          Duplicate="0"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz22_root17_rr6_vl1_vh127_06_neckRight.wav"
+          Duplicate="0"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz29_root22_rr1_vl1_vh127_01_bridgeLeft.wav"
+          Duplicate="0"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz29_root22_rr2_vl1_vh127_02_bridgeRight.wav"
+          Duplicate="0"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz29_root22_rr3_vl1_vh127_03_middleLeft.wav"
+          Duplicate="0"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz29_root22_rr4_vl1_vh127_04_middleRight.wav"
+          Duplicate="0"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz29_root22_rr5_vl1_vh127_05_neckLeft.wav"
+          Duplicate="0"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}wavetables/hz29_root22_rr6_vl1_vh127_06_neckRight.wav"
+          Duplicate="0"/>
+</samplemap>

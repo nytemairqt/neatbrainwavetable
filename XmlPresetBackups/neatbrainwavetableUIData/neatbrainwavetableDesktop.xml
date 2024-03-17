@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ContentProperties DeviceType="Desktop">
-  <Component type="ScriptButton" id="Button1" x="190.0" y="260.0" isMomentary="1"/>
+  <Component type="ScriptButton" id="Button1" x="190.0" y="260.0" isMomentary="1"
+             saveInPreset="0"/>
 </ContentProperties>
