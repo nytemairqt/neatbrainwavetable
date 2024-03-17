@@ -1,5 +1,9 @@
 Content.makeFrontInterface(600, 600);
 
+// HYPERPAMETERS
+const EXTRACTWAVETABLES = false;
+const BUILDSAMPLEMAP = true;
+
 // GLOBALS
 const SAMPLERATE = 44100.0;
 reg PENDING = false;
@@ -110,6 +114,9 @@ function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh)
 
 function buildSampleMap(sampleMapName)
 {
+	/* namespace SampleIds */
+	
+
 	// XML Constants
 	var sampleMapID = sampleMapName;
 	var footer = '</samplemap>';
@@ -146,14 +153,9 @@ function buildSampleMap(sampleMapName)
 	for (s in selection)
 		s.deleteSample();
 	
-	//var loadedSamples = Sampler1.asSampler().importSamples(["{PROJECT_FOLDER}wavetables/hz16_root12_rr1_vl1_vh127_01_bridgeLeft.wav"], true);
-	
 	//for (sample in samples)
 	for (i=0; i<samples.length; i++)
-	{
-		// Format: rootHz_rootKeyNum_RRGroup_articulation.wav
-		// ideal format: hz{}_root{}_rr{}_vl{}_vh{}_petName.wav
-			
+	{			
 		// Grab File Name
 		prefix = "{PROJECT_FOLDER}wavetables/";
 		name = samples[i].toString(3);
@@ -176,7 +178,7 @@ function buildSampleMap(sampleMapName)
 		}
 		if (rootNote == 88)
 		{
-			lowKey = rootNote - 2;
+			lowKey = rootNote - 3;
 			highKey = rootNote;					
 		}
 		else
@@ -219,6 +221,14 @@ function buildSampleMap(sampleMapName)
 
 			s.set(5, lowVel); // VLOW
 			s.set(6, highVel); // VHIGH
+			
+			s.set(15, loopStart);
+			s.set(16, loopEnd);
+			s.set(17, 0);
+			s.set(18, 1); // loop Active
+			
+			s.set(7, rrGroup); // RR GROUP
+			// 16-19: loopStart, loopEnd, loopFade, loopActive
 		}
 	}
 	
@@ -229,30 +239,33 @@ inline function onButton1Control(component, value)
 {
 	if (value)
 	{			
-		// Extract Wavetables
-		local audioFiles = FileSystem.findFiles(ROOT, "*.wav", false);
-		
-		for (i=0; i<audioFiles.length; i++)
+		if (EXTRACTWAVETABLES)
 		{
-			//for (j=0; j<keyRange.length; j++)
-			for (j=0; j<3; j++)
+			// Extract Wavetables
+			local audioFiles = FileSystem.findFiles(ROOT, "*.wav", false);
+			
+			for (i=0; i<audioFiles.length; i++)
 			{
-				Console.clear();
-
-				local hz = Engine.getFrequencyForMidiNoteNumber(keyRange[j]);
-				extractWavetable(audioFiles[i], hz, keyRange[j], i, 1, 127); // (file, f0, rootKey, rrGroup, velLow, velHigh)
-				
-				Console.print("Audio File: " + (i+1) + "/" + audioFiles.length);
-				Console.print("Wavetable: " + (j+1) + "/" + keyRange.length);
-			}			
+				for (j=0; j<keyRange.length; j++)
+				{
+					Console.clear();
+	
+					local hz = Engine.getFrequencyForMidiNoteNumber(keyRange[j]);
+					extractWavetable(audioFiles[i], hz, keyRange[j], i, 1, 127); // (file, f0, rootKey, rrGroup, velLow, velHigh)
+					
+					Console.print("Audio File: " + (i+1) + "/" + audioFiles.length);
+					Console.print("Wavetable: " + (j+1) + "/" + keyRange.length);
+				}			
+			}									
+			Console.clear();
+			Console.print("Finished extracting Wavetables.");
 		}
-	
-		
-	Console.clear();
-	Console.print("Finished extracting Wavetables.");
-	
-	buildSampleMap("wavetable");
-	
+		if (BUILDSAMPLEMAP)
+		{
+			Console.print("Creating sampleMap");
+			buildSampleMap("wavetable");	
+		}
+					
 	}	
 };
 

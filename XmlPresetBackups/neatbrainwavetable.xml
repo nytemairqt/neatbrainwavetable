@@ -29,7 +29,7 @@
                OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                NumChannels="1" UseStaticMatrix="0.0" Group0Table="" Group1Table=""
                Group2Table="" Group3Table="" Group4Table="" Group5Table="" Group6Table=""
-               Group7Table="" SampleMapID="wavetables">
+               Group7Table="">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
           <ChildProcessors/>
@@ -64,6 +64,12 @@
       <channels>
         <channelData enabled="1" level="0.0" suffix=""/>
       </channels>
+      <samplemap ID="wavetables" RRGroupAmount="1.0" MicPositions=";" CrossfadeGamma="1.0"
+                 SaveMode="0">
+        <sample Root="52" LoKey="50" HiKey="54" LoVel="1" HiVel="127" RRGroup="1"
+                FileName="{PROJECT_FOLDER}wavetables/hz165_root52_rr6_vl1_vh127_06_neckRight.wav"
+                Duplicate="0" LoopStart="2000" LoopEnd="2268" LoopXFade="0" LoopEnabled="1"/>
+      </samplemap>
     </Processor>
   </ChildProcessors>
   <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
