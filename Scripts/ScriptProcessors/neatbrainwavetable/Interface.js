@@ -193,9 +193,9 @@ function buildSampleMap(sampleMapName)
 		
 		// Setup Loop
 		// Pick any arbitrary Sample
-		loopStart = 2000;
+		loopStart = 4000;
 		loopEnd = loopStart + cycle;
-		loopFade = Math.round(cycle / 2); // TWEAK ME
+		loopFade = 0; // if we have a perfect Cycle we don't need any fading 
 		
 		// Parse RR Group
 		idx = name.indexOf("rr") + 2;
@@ -215,16 +215,18 @@ function buildSampleMap(sampleMapName)
 			{
 				s.set(x, lowKey);
 			}
-			
+					
 			s.set(2, rootNote); // ROOT
 			s.set(3, highKey); // HIGH
 
 			s.set(5, lowVel); // VLOW
 			s.set(6, highVel); // VHIGH
 			
-			s.set(15, loopStart);
-			s.set(16, loopEnd);
-			s.set(17, 0);
+			
+			
+			s.set(15, loopStart); // loopStart
+			s.set(16, loopEnd); // loopEnd
+			s.set(17, loopFade); // loopFade
 			s.set(18, 1); // loop Active
 			
 			s.set(7, rrGroup); // RR GROUP
