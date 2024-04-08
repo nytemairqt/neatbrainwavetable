@@ -10,7 +10,17 @@ lorisManager.set("enablecache", "false");
 // Repitch Buffer
 inline function repitch(obj)
 {
-	local ratio = TARGET / obj.rootFrequency;
+
+	/*
+	if(USEMANUALTUNING)
+	{
+		local ratio = TARGET / MANUAL_TUNING;
+	}
+	*/
+
+	//local ratio = TARGET / obj.rootFrequency;
+	
+	local ratio = USEMANUALTUNING ? TARGET / MANUAL_TUNING : TARGET / obj.rootFrequency;
 	obj.frequency *= ratio;	
 }
 

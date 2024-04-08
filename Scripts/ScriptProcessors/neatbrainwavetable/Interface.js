@@ -1,24 +1,24 @@
 Content.makeFrontInterface(600, 600);
 
 // HYPERPAMETERS
-const MULTISTRING = false;
-const EXTRACTWAVETABLES = false;
+const EXTRACTWAVETABLES = true;
 const EXTRACTRESIDUES = false;
 const BUILDSAMPLEMAP = false;
-const WG_FOLDER = "leftWG";
+const USEMANUALTUNING = true;
+const WG_FOLDER = "e24R";
 const RS_FOLDER = "leftRS";
-const PITCH_START = 0.2;
-const PITCH_END = 0.5;
+const PITCH_START = 0.1;
+const PITCH_END = 0.8;
 const TRIM_START = 0.05;
-const TRIM_END = 0.5;
+const TRIM_END = 0.7;
 const LOOP_START = 0.3;
 const FADE_TIME = 15;
+//const MANUAL_TUNING = 659.4;
+const MANUAL_TUNING = 1318.8;
 
 // GLOBALS
 const SAMPLERATE = 44100.0;
 reg PENDING = false;
-const MIDDLE_C = 261.63;
-const HIGH_E = 659.25;
 const AUDIOFILES = FileSystem.getFolder(FileSystem.AudioFiles);
 const SAMPLES = FileSystem.getFolder(FileSystem.Samples);
 const SAMPLEMAPS = FileSystem.getFolder(FileSystem.Samples).getParentDirectory().getChildFile("sampleMaps");
