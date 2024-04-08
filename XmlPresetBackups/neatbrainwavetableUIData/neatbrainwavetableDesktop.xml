@@ -4,7 +4,7 @@
   <Component type="ScriptButton" id="Button1" x="190.0" y="260.0" isMomentary="1"
              saveInPreset="0"/>
   <Component type="ScriptFloatingTile" id="FloatingTile1" x="0.0" y="490.0"
-             width="600" height="100" ContentType="Keyboard" bgColour="4284769380"
+             width="600.0" height="100.0" ContentType="Keyboard" bgColour="4284769380"
              itemColour="452984831" itemColour2="4294967295" textColour="0"
              Data="{&#10;  &quot;KeyWidth&quot;: 14.0,&#10;  &quot;DisplayOctaveNumber&quot;: false,&#10;  &quot;LowKey&quot;: 12,&#10;  &quot;HiKey&quot;: 88,&#10;  &quot;CustomGraphics&quot;: false,&#10;  &quot;DefaultAppearance&quot;: true,&#10;  &quot;BlackKeyRatio&quot;: 0.699999988079071,&#10;  &quot;ToggleMode&quot;: false,&#10;  &quot;MidiChannel&quot;: 1,&#10;  &quot;UseVectorGraphics&quot;: true,&#10;  &quot;UseFlatStyle&quot;: false,&#10;  &quot;MPEKeyboard&quot;: false,&#10;  &quot;MPEStartChannel&quot;: 2,&#10;  &quot;MPEEndChannel&quot;: 16&#10;}"/>
 </ContentProperties>
