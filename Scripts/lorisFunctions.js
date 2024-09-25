@@ -1,38 +1,30 @@
-// Instantiate Loris Engine
+/* Instantiate Loris Engine */
+const lorisManager = Engine.getLorisManager();
 const worker = Engine.createBackgroundTask("Loris Processor");
+lorisManager.set("timedomain", "0to1");
+lorisManager.set("enablecache", "false");
 worker.setTimeOut(10000);
 worker.setForwardStatusToLoadingThread(true);
 
-const lorisManager = Engine.getLorisManager();
-lorisManager.set("timedomain", "0to1");
-lorisManager.set("enablecache", "false");
-
-// Repitch Buffer
 inline function repitch(obj)
 {
-
-	/*
-	if(USEMANUALTUNING)
-	{
-		local ratio = TARGET / MANUAL_TUNING;
-	}
-	*/
-
-	//local ratio = TARGET / obj.rootFrequency;
+	/* Repitches the audio buffer, allows for optional manual tuning */
 	
 	local ratio = USEMANUALTUNING ? TARGET / MANUAL_TUNING : TARGET / obj.rootFrequency;
 	obj.frequency *= ratio;	
 }
 
-// Save Audio To File
 inline function saveAudio(path, buffer)
 {
+	/* Writes the audio buffer to a .wav file  */
+	
 	path.writeAudioFile(buffer, SAMPLERATE, 24);
 }
 
-// Abort Process
 inline function abort()
 {
+	/* Aborts active worker process */	
+	
 	worker.setProgress(0.0);
 	worker.setStatusMessage("Cancel");
 	PENDING = false;	
@@ -43,7 +35,9 @@ inline function abort()
 // Extract & Resynthesize
 function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh, wgSamples, rsSamples)
 {
-	// Initialize
+	/* Extracts the Residue and Waveguides from an audio buffer */
+
+	/* Initialize Variables */
 	PENDING = true;	
 	if (worker.shouldAbort())
 		abort();
@@ -57,68 +51,62 @@ function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh, 
 	var fileName;
 	var path;
 
-	// Analyze
+	/* Analyze Audio Buffer */
 	f0 = buffer.detectPitch(SAMPLERATE, buffer.length * PITCH_START, buffer.length * PITCH_END);
 	lorisManager.analyse(file, f0);	
 	
-	// Grab Residue (Call before repitching)
+	/* Extract Residue (Before Repitching) */
 	if (EXTRACTRESIDUES)
 	{
 		wt = lorisManager.synthesise(file);
 		wt = wt[0];
-		residue = buffer - wt;
+		residue = buffer - wt; // Phase invert to extract Residue
 		
+		/* Naming convention workaround */
 		if ((rrGroup + 1) < 10)
 			fileName = "0" + (rrGroup + 1) + ".wav";
 		else
 			fileName = (rrGroup + 1) + ".wav";	
 				
-		path = rsSamples.getChildFile(fileName);
-		
+		/* Save extracted residue to residue folder */
+		path = rsSamples.getChildFile(fileName);		
 		saveAudio(path, residue)	;
 		Console.print("Wrote Residue");
-		
-		if (!EXTRACTWAVETABLES)
-		{
-			// End Worker
-			worker.setProgress(1.0);
-			PENDING = false;
-		}
 	}
 	
 	if (EXTRACTWAVETABLES)
 	{
-		// Repitch
+		/* Repitch buffer to target */
 		TARGET = targetPitch;
 		lorisManager.processCustom(file, repitch);	
 		
-		// Resynthesize
+		/* Resynthesize new waveguide */
 		wt = lorisManager.synthesise(file);	
 		wt = wt[0]; // Get the Buffer
 		
-		// Trim Buffer Start & Ends
+		/* Trim buffer start & end */
 		for (i=(wt.length * TRIM_START); i<(wt.length * TRIM_END); i++) // KEEP ME
 		{
 			output.push(wt[i]);
 		}
 				
-		// Write to Audio File	
+		/* Write waveguide to audio file */
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + vl + "_vh" + vh + "_" + file.toString(3);
 		path = wgSamples.getChildFile(fileName);
-		
 		saveAudio(path, output);	
 		Console.print("Wrote to file");
-		
-		// End Worker
-		worker.setProgress(1.0);
-		PENDING = false;
-	}			
+	}
+
+	/* Finish worker process */
+	worker.setProgress(1.0);
+	PENDING = false;			
 }
 
 
 
 function buildSampleMap(wgSamples)
 {
+	/* Loads a sampleMap, imports audio samples and assigns them, then saves the sampleMap */
 	if (!BUILDSAMPLEMAP)
 		return;
 			
@@ -126,7 +114,7 @@ function buildSampleMap(wgSamples)
 
 	/* NOTE	rrGroups & sampleMap Loading must be done manually (yuck) */
 	
-	// Sample Properties
+	/* Initialize Variables */
 	var prefix;
 	var name;
 	var path;
@@ -145,28 +133,25 @@ function buildSampleMap(wgSamples)
 	var loopEnd;
 	var loopFade;		
 	
-	// Load and setup SampleMap
+	/* Find samples & load sampleMap */
 	var samples = FileSystem.findFiles(wgSamples, "*.wav", false);
 	var sampleMapToLoad = SAMPLEMAPS.getChildFile(sampleMapName + ".xml");
 	
-	//for (sample in samples)
+	/* Iterate through samples */
 	for (i=0; i<samples.length; i++)
 	{			
-		// Grab File Name
-		prefix = "{PROJECT_FOLDER}" + wgSamples.toString(1) + "/";
-		
+		/* Get sample name as string */		
+		prefix = "{PROJECT_FOLDER}" + wgSamples.toString(1) + "/";	
 		name = samples[i].toString(3);
 		path = prefix + name;		
-		var buffer = samples[i].loadAsAudioFile();
-		
-		// Parse RootNote as Int
-		idx = name.indexOf("root") + 4;
-		
+
+		/* Grab index of "root" from filename to find the sample's root */
+		idx = name.indexOf("root") + 4;	
 		rootNote = name.substring(name.indexOf("_") + 1, name.indexOf("_") + 3);		
 		rootNote = name.substring(idx, idx+2);
-		rootNote = Math.round(rootNote);			
+		rootNote = Math.round(rootNote);					
 				
-		// Calculate KeySpan
+		/* Calculate keyspan (where the sample will stretch to/from) */
 		if (rootNote == 12)
 		{
 			lowKey = rootNote;
@@ -182,45 +167,48 @@ function buildSampleMap(wgSamples)
 			lowKey = rootNote - 2;
 			highKey = rootNote + 2;	
 		}
-		
-		// Calculate Single Cycle
+
+		/* Load sample into buffer and calculate cycle length*/
+		var buffer = samples[i].loadAsAudioFile();		
 		hz = Engine.getFrequencyForMidiNoteNumber(rootNote);		
 		var cycle = Math.round(SAMPLERATE / hz);
-		
-		// Setup Loop
-		// Pick any arbitrary Sample
+
+		/* Setup loop points w/ respect to cycle */
 		loopStart = buffer.length * LOOP_START;
 		loopEnd = loopStart + cycle;
-		loopFade = FADE_TIME; // if we have a perfect Cycle we don't need any fading 
+		loopFade = FADE_TIME; 
 		
-		// Parse RR Group
+		/* Parse RR group from filename */
 		idx = name.indexOf("rr") + 2;
 		subString = name.substring(idx, idx+10); // pad for RR Groups > 10
 		rrGroup = subString.substring(0, subString.indexOf("_"));
 		rrGroup = Math.round(rrGroup);			
 		
-		// Populate sampleMap
-		var importedSample = Sampler1.asSampler().importSamples([path], true);
-		
+		/* Populate sampleMap */
+		var importedSample = Sampler1.asSampler().importSamples([path], true);		
 		for (s in importedSample)
 		{
-			// LOW (IDK Why this needs to loop but it does)
+			/* Assign sample properties */
+			/* This first one needs to loop (for some reason) */
 			for (x = 3; x < 5; x++)
 			{
-				s.set(x, lowKey);
-			}
-					
-			s.set(2, rootNote); // ROOT
-			s.set(3, highKey); // HIGH
-			s.set(5, lowVel); // VLOW
-			s.set(6, highVel); // VHIGH									
-			s.set(15, loopStart); // loopStart
-			s.set(16, loopEnd); // loopEnd
-			s.set(17, loopFade); // loopFade
-			s.set(18, 1); // loop Active
+				s.set(x, lowKey); // LOW KEY
+			}					
+			s.set(2, rootNote); // ROOT KEY
+			s.set(3, highKey); // HIGH KEY
+			s.set(5, lowVel); // LOW VELOCITY
+			s.set(6, highVel); // HIGH VELOCITY							
+			s.set(15, loopStart); // LOOP START
+			s.set(16, loopEnd); // LOOP END
+			s.set(17, loopFade); // LOOP FADE
+			s.set(18, 1); // LOOP ACTIVE (Bool)
 			
 			s.set(7, rrGroup); // RR GROUP
-			// 16-19: loopStart, loopEnd, loopFade, loopActive
+
+			/* 16-19: LOOP START, LOOP END, LOOP FADE, LOOP ACTIVE */
 		}
+
+		/* Save sampleMap */		
+		// Sampler.saveCurrentSampleMap(String relativePathWithoutXML)
 	}	
 }

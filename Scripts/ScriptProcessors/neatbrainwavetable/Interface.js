@@ -5,7 +5,7 @@ const EXTRACTWAVETABLES = true;
 const EXTRACTRESIDUES = false;
 const BUILDSAMPLEMAP = false;
 const USEMANUALTUNING = true;
-const WG_FOLDER = "e24R";
+const WG_FOLDER = "bassCString12";
 const RS_FOLDER = "leftRS";
 const PITCH_START = 0.1;
 const PITCH_END = 0.8;
@@ -13,8 +13,10 @@ const TRIM_START = 0.05;
 const TRIM_END = 0.7;
 const LOOP_START = 0.3;
 const FADE_TIME = 15;
-//const MANUAL_TUNING = 659.4;
-const MANUAL_TUNING = 1318.8;
+//const MANUAL_TUNING = 659.4; //gtr e string 12
+//const MANUAL_TUNING = 1318.8; //gtr e string 24
+//const MANUAL_TUNING = 87.2; // bs c string 5
+const MANUAL_TUNING = 130.8; // bs c string 12
 
 // GLOBALS
 const SAMPLERATE = 44100.0;
@@ -28,26 +30,21 @@ const Sampler1 = Synth.getChildSynth("Sampler1");
 
 include("lorisFunctions.js");
 
-
-
-// Press the big red button
-inline function onButton1Control(component, value)
+inline function onbtnExtractWaveguidesControl(component, value)
 {
 	if (value)
 	{
-		// create directories if they dont exist	
+		/* Create Directories */
 		local WG_SAMPLES = SAMPLES.createDirectory(WG_FOLDER);
 		local RS_SAMPLES = SAMPLES.createDirectory(RS_FOLDER);
-		
-
 		local audioFiles = FileSystem.findFiles(AUDIOFILES, "*.wav", false);
 		
-		for (i=0; i<audioFiles.length; i++)
+		/* Main Loop */
+		for (i=0; i<audioFiles.length; i++) /* For each audio file */
 		{
-			for (j=0; j<keyRange.length; j++)
+			for (j=0; j<keyRange.length; j++) /* For each registered key */
 			{
 				Console.clear();
-
 				local hz = Engine.getFrequencyForMidiNoteNumber(keyRange[j]);
 				extractWavetable(audioFiles[i], hz, keyRange[j], i, 1, 127, WG_SAMPLES, RS_SAMPLES);					
 				Console.print("Audio File: " + (i+1) + "/" + audioFiles.length);
@@ -60,7 +57,7 @@ inline function onButton1Control(component, value)
 	}	
 };
 
-Content.getComponent("Button1").setControlCallback(onButton1Control);
+Content.getComponent("btnExtractWaveguides").setControlCallback(onbtnExtractWaveguidesControl);
 
 
 
