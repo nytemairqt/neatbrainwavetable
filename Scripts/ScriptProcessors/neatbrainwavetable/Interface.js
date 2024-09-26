@@ -4,15 +4,19 @@ Content.makeFrontInterface(600, 600);
 const EXTRACTWAVETABLES = true;
 const EXTRACTRESIDUES = false;
 const BUILDSAMPLEMAP = false;
-const USEMANUALTUNING = true;
-const WG_FOLDER = "bassCString12";
+const USEMANUALTUNING = false;
+const DAMPENUPPERREGISTER = true; // test implementation
+
+const WG_FOLDER = "dampentest";
 const RS_FOLDER = "leftRS";
+
 const PITCH_START = 0.1;
 const PITCH_END = 0.8;
 const TRIM_START = 0.05;
 const TRIM_END = 0.7;
 const LOOP_START = 0.3;
 const FADE_TIME = 15;
+
 //const MANUAL_TUNING = 659.4; //gtr e string 12
 //const MANUAL_TUNING = 1318.8; //gtr e string 24
 //const MANUAL_TUNING = 87.2; // bs c string 5
@@ -34,24 +38,24 @@ inline function onbtnExtractWaveguidesControl(component, value)
 {
 	if (value)
 	{
-		/* Create Directories */
+		// Create Directories
 		local WG_SAMPLES = SAMPLES.createDirectory(WG_FOLDER);
 		local RS_SAMPLES = SAMPLES.createDirectory(RS_FOLDER);
 		local audioFiles = FileSystem.findFiles(AUDIOFILES, "*.wav", false);
 		
-		/* Main Loop */
-		for (i=0; i<audioFiles.length; i++) /* For each audio file */
+		// Main Loop
+		for (i=0; i<audioFiles.length; i++) // For each audio file
 		{
-			for (j=0; j<keyRange.length; j++) /* For each registered key */
+			for (j=0; j<keyRange.length; j++) // For each registered key
 			{
-				Console.clear();
+				//Console.clear();
 				local hz = Engine.getFrequencyForMidiNoteNumber(keyRange[j]);
 				extractWavetable(audioFiles[i], hz, keyRange[j], i, 1, 127, WG_SAMPLES, RS_SAMPLES);					
 				Console.print("Audio File: " + (i+1) + "/" + audioFiles.length);
 				Console.print("Wavetable: " + (j+1) + "/" + keyRange.length);
-			}			
+			}		
 		}									
-		Console.clear();
+		//Console.clear();
 		Console.print("Finished extracting Wavetables.");
 		buildSampleMap(WG_SAMPLES);					
 	}	
