@@ -14,6 +14,22 @@ inline function repitch(obj)
 	obj.frequency *= ratio;		
 }
 
+inline function boostFundamental(obj)
+{
+	// Boosts frequencies around the fundamental, useful for sculpting tone before dampening
+	local spectralDistance = obj.frequency > TARGET ? obj.frequency - TARGET : TARGET - obj.frequency;
+	if (spectralDistance < 50.0)
+	{
+		obj.gain *= 5.0;
+	}
+}
+
+inline function boostSecondPartials(obj)
+{
+	// this function will inherit from boostFundamental, but will apply to overtones
+	// this will be used for sculpting other articulations, such as natural harmonics, which have a higher overtones
+}
+
 inline function dampenUpperRegister(obj)
 {
 	// Dampens harsh frequencies created by resynthesizing a low fundamental
@@ -111,6 +127,8 @@ function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh, 
 		// Dampen upper register harshness
 		if (DAMPENUPPERREGISTER)
 			lorisManager.processCustom(file, dampenUpperRegister);
+			
+		lorisManager.processCustom(file, boostFundamental);
 		
 		
 		// Resynthesize new waveguide
