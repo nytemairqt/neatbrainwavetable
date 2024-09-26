@@ -48,18 +48,14 @@ inline function sculptNaturalHarmonic(obj)
 	local idx = obj.frequency / obj.rootFrequency;
 	local min = 20.0;
 	local max = 20000.0;	
-	local pad = 100.0;
-	local rootMax = 1400.0;
-	local stringCutoff = 220.0;
 	local crossover = TARGET * 2; // different for harmonics, this is the 2nd overtone
-	local normalizedF0 = (TARGET - min) / (rootMax - min);
 
 	if (obj.frequency > crossover && obj.frequency < max) // different requirements for harmonics
 	{
 		local globalCoefficient = 1.0;
-		local distanceCoefficient = 0.005; // this might need to be higher for natural harms
+		local distanceCoefficient = 0.0045; // this might need to be higher for natural harms
 		local spectralDistance = obj.frequency - crossover;
-		local attenuation = Math.exp(-spectralDistance * ((distanceCoefficient * normalizedF0) * globalCoefficient));
+		local attenuation = Math.exp(-spectralDistance * distanceCoefficient);
 		obj.gain *= attenuation;		
 	}
 
@@ -73,7 +69,7 @@ inline function sculptNaturalHarmonic(obj)
 inline function sculptPinchharmonic(obj){}
 inline function sculptPalmMute(obj){}
 
-inline function dampenUpperRegister(obj, stringCutoff)
+inline function dampenUpperRegister(obj)
 {
 	// Dampens harsh frequencies created by resynthesizing a low fundamental
 	local idx = obj.frequency / obj.rootFrequency;
@@ -172,8 +168,9 @@ function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh, 
 		if (DAMPENUPPERREGISTER)
 			lorisManager.processCustom(file, dampenUpperRegister);
 			
-		lorisManager.processCustom(file, boostFundamental);
+		lorisManager.processCustom(file, boostFundamental); // most likely don't need this for regular sustains
 		*/
+		
 
 		// create natural harmonic
 		lorisManager.processCustom(file, sculptNaturalHarmonic);
