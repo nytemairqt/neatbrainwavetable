@@ -1,7 +1,8 @@
 // Instantiate Loris engine
 const lorisManager = Engine.getLorisManager();
 const worker = Engine.createBackgroundTask("Loris Processor");
-lorisManager.set("timedomain", "0to1");
+//lorisManager.set("timedomain", "0to1");
+lorisManager.set("timedomain", "seconds");
 lorisManager.set("enablecache", "false");
 worker.setTimeOut(10000);
 worker.setForwardStatusToLoadingThread(true);
@@ -26,34 +27,26 @@ inline function boostFundamental(obj)
 
 inline function sculptNaturalHarmonic(obj)
 {
-	// this function will inherit from boostFundamental, but will apply to overtones
-	// this will be used for sculpting other articulations, such as natural harmonics, which have a higher overtones
+	// Applies a variety of partial gain adjustments to shift a standard sustain closer to a natural harmonic
+	// Harmonics have a boosted fundamental and high frequency dampening
 
-	/*
-
-		natural harmonics have a boosted fundamental, and begin dampening at the second harmonic with a relatively steep curve
-		ideally i would generalize the boost and dampen functions to be able to just select a range of frequencies to target
-		waiting for HISE forum reply for that, in the meantime...
-	*/
-
-	// boost fundamental (stolen from above)
+	// boost fundamental
 	local spectralDistance = obj.frequency > TARGET ? obj.frequency - TARGET : TARGET - obj.frequency;
 	if (spectralDistance < 50.0)
 	{
 		obj.gain *= 4.0;
 	}
 
-	// apply dampen 
-	// different to original dampen function
+	// dampen overtones
 	local idx = obj.frequency / obj.rootFrequency;
 	local min = 20.0;
 	local max = 20000.0;	
-	local crossover = TARGET * 2; // different for harmonics, this is the 2nd overtone
+	local crossover = TARGET * 2; // second harmonic
 
-	if (obj.frequency > crossover && obj.frequency < max) // different requirements for harmonics
+	if (obj.frequency > crossover && obj.frequency < max)
 	{
 		local globalCoefficient = 1.0;
-		local distanceCoefficient = 0.0045; // this might need to be higher for natural harms
+		local distanceCoefficient = 0.0045; 
 		local spectralDistance = obj.frequency - crossover;
 		local attenuation = Math.exp(-spectralDistance * distanceCoefficient);
 		obj.gain *= attenuation;		
@@ -70,8 +63,8 @@ inline function sculptPinchharmonic(obj){}
 
 inline function sculptPalmMute(obj)
 {
-	// palm mutes are similar to natural harmonics, without the boosted fundamental and with a more aggressive dampening
-	// dampening applies at the fundamental and is more aggressive than natural harmonics
+	// Applies a variety of partial gain adjustments to shift a standard sustain closer to a palm mute
+	// Palm mutes have dynamic high frequency dampening and no boost to the fundamental
 	
 	// apply dampen 
 	local idx = obj.frequency / obj.rootFrequency;
@@ -79,10 +72,10 @@ inline function sculptPalmMute(obj)
 	local max = 20000.0;	
 	local crossover = TARGET;
 
-	if (obj.frequency > crossover && obj.frequency < max) // different requirements for harmonics
+	if (obj.frequency > crossover && obj.frequency < max) 
 	{
 		local globalCoefficient = 1.0;
-		local distanceCoefficient = 0.007; // this might need to be higher for natural harms
+		local distanceCoefficient = 0.007; // more aggressive dampening
 		local spectralDistance = obj.frequency - crossover;
 		local attenuation = Math.exp(-spectralDistance * distanceCoefficient);
 		obj.gain *= attenuation;		
@@ -189,21 +182,20 @@ function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh, 
 		TARGET = targetPitch;
 		lorisManager.processCustom(file, repitch);	
 
+		// attempting to use applyFilter (currently not working)
+		//var filterData = [[0.0, 0], [0.2,  0], [0.4,  20000], [0.4, 10000], [0.6, 0]]; // these might be 0-1 instead of frequency
+		//lorisManager.process(file, "applyFilter", filterData); // applies a uniform gain multiplier with no time-modulation
+		
 		// Dampen upper register harshness
-		/*
+		// only used for sustains
 		if (DAMPENUPPERREGISTER)
 			lorisManager.processCustom(file, dampenUpperRegister);
-			
-		lorisManager.processCustom(file, boostFundamental); // most likely don't need this for regular sustains
-		*/
 		
-
 		// create natural harmonic
 		//lorisManager.processCustom(file, sculptNaturalHarmonic);
 		
-		// create palm mute
-		lorisManager.processCustom(file, sculptPalmMute);
-		
+		// create palm mute // requires more dynamic dampening
+		//lorisManager.processCustom(file, sculptPalmMute);
 		
 		// Resynthesize new waveguide
 		wt = lorisManager.synthesise(file);	
@@ -219,8 +211,7 @@ function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh, 
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + vl + "_vh" + vh + "_" + file.toString(3);
 		path = wgSamples.getChildFile(fileName);
 		saveAudio(path, output);	
-		Console.print("Wrote to file");
-		
+		Console.print("Wrote to file");		
 	}
 
 	// Finish worker process
