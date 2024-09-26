@@ -22,10 +22,11 @@ inline function dampenUpperRegister(obj)
 	local max = 20000.0;	
 	local pad = 100.0;
 	local rootMax = 1400.0;
+	local stringCutoff = 220.0;
 	local crossover = TARGET + pad;
 	local normalizedF0 = (TARGET - min) / (rootMax - min);
 		
-	if (obj.frequency > crossover && obj.frequency < max)
+	if (obj.frequency > crossover && obj.frequency < max && TARGET > stringCutoff)
 	{
 		local globalCoefficient = 1.0;
 		local distanceCoefficient = 0.003;		
