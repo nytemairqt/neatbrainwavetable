@@ -67,7 +67,33 @@ inline function sculptNaturalHarmonic(obj)
 }
 
 inline function sculptPinchharmonic(obj){}
-inline function sculptPalmMute(obj){}
+
+inline function sculptPalmMute(obj)
+{
+	// palm mutes are similar to natural harmonics, without the boosted fundamental and with a more aggressive dampening
+	// dampening applies at the fundamental and is more aggressive than natural harmonics
+	
+	// apply dampen 
+	local idx = obj.frequency / obj.rootFrequency;
+	local min = 20.0;
+	local max = 20000.0;	
+	local crossover = TARGET;
+
+	if (obj.frequency > crossover && obj.frequency < max) // different requirements for harmonics
+	{
+		local globalCoefficient = 1.0;
+		local distanceCoefficient = 0.007; // this might need to be higher for natural harms
+		local spectralDistance = obj.frequency - crossover;
+		local attenuation = Math.exp(-spectralDistance * distanceCoefficient);
+		obj.gain *= attenuation;		
+	}
+
+	// Kills any potential aliasing frequencies as a result of the pitch shift
+	if (obj.frequency >= max)
+	{
+		obj.gain = 0.0;
+	}
+}
 
 inline function dampenUpperRegister(obj)
 {
@@ -173,7 +199,10 @@ function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh, 
 		
 
 		// create natural harmonic
-		lorisManager.processCustom(file, sculptNaturalHarmonic);
+		//lorisManager.processCustom(file, sculptNaturalHarmonic);
+		
+		// create palm mute
+		lorisManager.processCustom(file, sculptPalmMute);
 		
 		
 		// Resynthesize new waveguide
