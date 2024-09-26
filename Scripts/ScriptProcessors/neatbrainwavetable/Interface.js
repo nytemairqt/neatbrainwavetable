@@ -7,7 +7,7 @@ const BUILDSAMPLEMAP = false;
 const USEMANUALTUNING = false;
 const DAMPENUPPERREGISTER = true; // test implementation
 
-const WG_FOLDER = "dampentest";
+const WG_FOLDER = "naturalHarmonicTest";
 const RS_FOLDER = "leftRS";
 
 const PITCH_START = 0.1;

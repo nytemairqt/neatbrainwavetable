@@ -24,13 +24,56 @@ inline function boostFundamental(obj)
 	}
 }
 
-inline function boostSecondPartials(obj)
+inline function sculptNaturalHarmonic(obj)
 {
 	// this function will inherit from boostFundamental, but will apply to overtones
 	// this will be used for sculpting other articulations, such as natural harmonics, which have a higher overtones
+
+	/*
+
+		natural harmonics have a boosted fundamental, and begin dampening at the second harmonic with a relatively steep curve
+		ideally i would generalize the boost and dampen functions to be able to just select a range of frequencies to target
+		waiting for HISE forum reply for that, in the meantime...
+	*/
+
+	// boost fundamental (stolen from above)
+	local spectralDistance = obj.frequency > TARGET ? obj.frequency - TARGET : TARGET - obj.frequency;
+	if (spectralDistance < 50.0)
+	{
+		obj.gain *= 4.0;
+	}
+
+	// apply dampen 
+	// different to original dampen function
+	local idx = obj.frequency / obj.rootFrequency;
+	local min = 20.0;
+	local max = 20000.0;	
+	local pad = 100.0;
+	local rootMax = 1400.0;
+	local stringCutoff = 220.0;
+	local crossover = TARGET * 2; // different for harmonics, this is the 2nd overtone
+	local normalizedF0 = (TARGET - min) / (rootMax - min);
+
+	if (obj.frequency > crossover && obj.frequency < max) // different requirements for harmonics
+	{
+		local globalCoefficient = 1.0;
+		local distanceCoefficient = 0.005; // this might need to be higher for natural harms
+		local spectralDistance = obj.frequency - crossover;
+		local attenuation = Math.exp(-spectralDistance * ((distanceCoefficient * normalizedF0) * globalCoefficient));
+		obj.gain *= attenuation;		
+	}
+
+	// Kills any potential aliasing frequencies as a result of the pitch shift
+	if (obj.frequency >= max)
+	{
+		obj.gain = 0.0;
+	}
 }
 
-inline function dampenUpperRegister(obj)
+inline function sculptPinchharmonic(obj){}
+inline function sculptPalmMute(obj){}
+
+inline function dampenUpperRegister(obj, stringCutoff)
 {
 	// Dampens harsh frequencies created by resynthesizing a low fundamental
 	local idx = obj.frequency / obj.rootFrequency;
@@ -125,10 +168,15 @@ function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh, 
 		lorisManager.processCustom(file, repitch);	
 
 		// Dampen upper register harshness
+		/*
 		if (DAMPENUPPERREGISTER)
 			lorisManager.processCustom(file, dampenUpperRegister);
 			
 		lorisManager.processCustom(file, boostFundamental);
+		*/
+
+		// create natural harmonic
+		lorisManager.processCustom(file, sculptNaturalHarmonic);
 		
 		
 		// Resynthesize new waveguide
