@@ -1,3 +1,5 @@
+const test = [];
+
 function buildSampleMap(articulation)
 {
 	// where articulation is string name of folder [residue, sustain, palmMute, naturalHarmonic, pinchHarmonic]
@@ -8,7 +10,7 @@ function buildSampleMap(articulation)
 
 	var samples;
 	var samplesFolder;
-	var sampleMapToLoad;
+	var sampleMapName;
 	
 	var prefix;
 	var name;
@@ -58,18 +60,71 @@ function buildSampleMap(articulation)
 	}
 
 	var samples = FileSystem.findFiles(samplesFolder, "*.wav", false);
-	var sampleMapToLoad = SAMPLEMAPS.getChildFile(sampleMapName + ".xml");
+	Sampler1.asSampler().clearSampleMap(); // clear first to avoid overlapping samples
 
+	// residue
+
+	if (articulation == "residue")
+	{
+		lowKey = 12;
+		highKey = 88;
+		lowVel = 1;
+		highVel = 127;
+
+		for (i=0; i<samples.length; i++)
+		{
+			// Get sample name as string
+			prefix = "{PROJECT_FOLDER}" + samplesFolder.toString(1) + "/";	
+			name = samples[i].toString(3);
+			path = prefix + name;							
+			
+			// Parse RR group from filename
+			idx = name.indexOf("rr") + 2;
+			subString = name.substring(idx, idx+10); // pad for RR Groups > 10
+			rrGroup = subString.substring(0, subString.indexOf("_"));
+			rrGroup = Math.round(rrGroup);			
+							
+			// Populate sampleMap
+			var importedSample = Sampler1.asSampler().importSamples([path], true);		
+		
+			for (s in importedSample)
+			{
+				// Assign sample properties
+				// This first one needs to loop (for some reason)
+				for (x = 3; x < 5; x++)
+				{
+					s.set(x, lowKey); // LOW KEY
+				}					
+				s.set(2, lowKey); // ROOT SAME AS LOW KEY FOR RESIDUE
+				s.set(3, highKey); // HIGH KEY
+				s.set(5, lowVel); // LOW VELOCITY
+				s.set(6, highVel); // HIGH VELOCITY							
+				s.set(18, 0); // LOOP ACTIVE (Bool)				
+				s.set(7, rrGroup); // RR GROUP
+
+				// 16-19: LOOP START, LOOP END, LOOP FADE, LOOP ACTIVE
+			}
+
+			// Save sampleMap
+			Sampler1.asSampler().saveCurrentSampleMap(sampleMapName);
+		}
+	}
+	else // add fx later
+	{
+		return;
+	}
+	
+	/*
 	for (i=0; i<samples.length; i++)
 	{
 		// Get sample name as string
-		prefix = "{PROJECT_FOLDER}" + wgSamples.toString(1) + "/";	
+		prefix = "{PROJECT_FOLDER}" + samplesFolder.toString(1) + "/";	
 		name = samples[i].toString(3);
 		path = prefix + name;		
 
 		// Grab index of "root" from filename to find the sample's root
 		idx = name.indexOf("root") + 4;	
-		rootNote = name.substring(name.indexOf("_") + 1, name.indexOf("_") + 3);		
+		rootNote = name.substring(name.indexOf("_") + 1, name.indexOf("_") + 3); // this wont work for residue
 		rootNote = name.substring(idx, idx+2);
 		rootNote = Math.round(rootNote);					
 				
@@ -133,6 +188,7 @@ function buildSampleMap(articulation)
 		// Save sampleMap
 		// Sampler.saveCurrentSampleMap(String relativePathWithoutXML)
 	}
+	*/
 }
 
 

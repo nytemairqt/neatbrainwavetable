@@ -61,7 +61,7 @@ inline function onbtnExtractWaveguidesControl(component, value)
 		}									
 		Console.clear();
 		Console.print("Finished extracting Wavetables.");
-		buildSampleMap(SAMPLES_SUSTAIN);					
+		buildSampleMap("residue");					
 	}	
 };
 

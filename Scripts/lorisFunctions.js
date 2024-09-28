@@ -224,9 +224,9 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup)
 
 		// Naming convention workaround
 		if ((rrGroup + 1) < 10)
-			fileName = "residue_" + "0" + (rrGroup + 1) + ".wav";
+			fileName = "residue_" + "rr0" + (rrGroup + 1) + ".wav";
 		else
-			fileName = "residue_" + (rrGroup + 1) + ".wav";	
+			fileName = "residue_" + "rr" + (rrGroup + 1) + ".wav";	
 				
 		// Save extracted residue to residue folder
 		saveAudio(SAMPLES_RESIDUE.getChildFile(fileName), residue);

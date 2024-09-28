@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<samplemap ID="wavetables" RRGroupAmount="1.0" MicPositions=";" CrossfadeGamma="1.0"
-           SaveMode="1">
+<samplemap CrossfadeGamma="1.0" ID="sampleMapResidue" RRGroupAmount="1.0"
+           MicPositions=";">
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr01.wav" Duplicate="0"
+          LoopEnabled="0"/>
 </samplemap>

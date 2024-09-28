@@ -9,16 +9,7 @@
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0">
           <ChildProcessors/>
           <Content/>
-          <UIData>
-            <ContentProperties DeviceType="Desktop">
-              <Component type="ScriptButton" id="btnExtractWaveguides" x="190.0" y="260.0"
-                         isMomentary="1" saveInPreset="0"/>
-              <Component type="ScriptFloatingTile" id="FloatingTile1" x="0.0" y="490.0"
-                         width="600.0" height="100.0" ContentType="Keyboard" bgColour="4284769380"
-                         itemColour="452984831" itemColour2="4294967295" textColour="0"
-                         Data="{&#10;  &quot;KeyWidth&quot;: 14.0,&#10;  &quot;DisplayOctaveNumber&quot;: false,&#10;  &quot;LowKey&quot;: 12,&#10;  &quot;HiKey&quot;: 88,&#10;  &quot;CustomGraphics&quot;: false,&#10;  &quot;DefaultAppearance&quot;: true,&#10;  &quot;BlackKeyRatio&quot;: 0.699999988079071,&#10;  &quot;ToggleMode&quot;: false,&#10;  &quot;MidiChannel&quot;: 1,&#10;  &quot;UseVectorGraphics&quot;: true,&#10;  &quot;UseFlatStyle&quot;: false,&#10;  &quot;MPEKeyboard&quot;: false,&#10;  &quot;MPEStartChannel&quot;: 2,&#10;  &quot;MPEEndChannel&quot;: 16&#10;}"/>
-            </ContentProperties>
-          </UIData>
+          <UIData Source="neatbrainwavetableUIData"/>
         </Processor>
       </ChildProcessors>
     </Processor>
@@ -34,11 +25,11 @@
     <Processor Type="StreamingSampler" ID="Sampler1" Bypassed="0" Gain="1.0"
                Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
                PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-               SamplerRepeatMode="3.0" RRGroupAmount="3.0" PitchTracking="1.0"
+               SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                NumChannels="1" UseStaticMatrix="0.0" Group0Table="" Group1Table=""
                Group2Table="" Group3Table="" Group4Table="" Group5Table="" Group6Table=""
-               Group7Table="" SampleMapID="">
+               Group7Table="" SampleMapID="sampleMapResidue">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
           <ChildProcessors/>
