@@ -196,7 +196,7 @@ inline function extractWavetable(file, f0, targetPitch, articulation)
 
 
 // Extract & Resynthesize
-function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup, vl, vh)
+function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup)
 {
 	// Extracts the Residue and all Waveguides from an audio buffer
 
@@ -224,47 +224,45 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup, vl, 
 
 		// Naming convention workaround
 		if ((rrGroup + 1) < 10)
-			fileName = "0" + (rrGroup + 1) + ".wav";
+			fileName = "residue_" + "0" + (rrGroup + 1) + ".wav";
 		else
-			fileName = (rrGroup + 1) + ".wav";	
+			fileName = "residue_" + (rrGroup + 1) + ".wav";	
 				
 		// Save extracted residue to residue folder
 		saveAudio(SAMPLES_RESIDUE.getChildFile(fileName), residue);
 		Console.print("Wrote Residue to file");
 	}
 
-	// changes the global reg "TARGET" to our new targetPitch (used in other funcs)
+	// Set our new target before repitching
 	TARGET = targetPitch;
 
-	// now we're ready to repitch and modify the partials:
-
+	// Now extract the wavetables
 	if (EXTRACT_SUSTAIN)
 	{
 		wt = extractWavetable(file, f0, targetPitch, "sustain");
 	
-		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + vl + "_vh" + vh + "_" + file.toString(3);
+		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 65 + "_vh" + 125 + file.toString(2);
 		saveAudio(SAMPLES_SUSTAIN.getChildFile(fileName), wt);	
 		Console.print("Wrote Sustain to file");	
 	}
-
 	if (EXTRACT_PALMMUTE)
 	{
 		wt = extractWavetable(file, f0, targetPitch, "palmMute");				
-		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + vl + "_vh" + vh + "_" + file.toString(3);
+		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 1 + "_vh" + 64 + file.toString(2);
 		saveAudio(SAMPLES_PALMMUTE.getChildFile(fileName), wt);
 		Console.print("Wrote Palm Mute to file");			
 	}
 	if (EXTRACT_NATURALHARMONIC)
 	{
 		wt = extractWavetable(file, f0, targetPitch, "naturalHarmonic");
-		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + vl + "_vh" + vh + "_" + file.toString(3);
+		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 126 + "_vh" + 126 + file.toString(2);
 		saveAudio(SAMPLES_NATURALHARMONIC.getChildFile(fileName), wt);
 		Console.print("Wrote Palm Mute to file");			
 	}
 	if (EXTRACT_PINCHHARMONIC)
 	{
 		wt = extractWavetable(file, f0, targetPitch, "pinchHarmonic");
-		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + vl + "_vh" + vh + "_" + file.toString(3);
+		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 127 + "_vh" + 127 + file.toString(2);
 		saveAudio(SAMPLES_PINCHHARMONIC.getChildFile(fileName), wt);
 		Console.print("Wrote Palm Mute to file");			
 	}	
@@ -274,113 +272,3 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup, vl, 
 	PENDING = false;			
 }
 
-
-
-function buildSampleMap(wgSamples)
-{
-	// Loads a sampleMap, imports audio samples and assigns them, then saves the sampleMap
-	if (!BUILDSAMPLEMAP)
-		return;
-			
-	Console.print("Creating sampleMap");
-
-	// NOTE	rrGroups & sampleMap Loading must be done manually (yuck)
-	
-	// Initialize Variables
-	var prefix;
-	var name;
-	var path;
-	var lowKey;
-	var highKey;
-	var lowVel = 1;
-	var highVel = 127;	
-	var rrGroup;
-	var rootNote;
-	var idx;
-	var subString;
-	var hz;
-	var pitch;
-	var sampleStart = 0;
-	var loopStart;
-	var loopEnd;
-	var loopFade;		
-	
-	// Find samples & load sampleMap
-	var samples = FileSystem.findFiles(wgSamples, "*.wav", false);
-	var sampleMapToLoad = SAMPLEMAPS.getChildFile(sampleMapName + ".xml");
-	
-	// Iterate through samples
-	for (i=0; i<samples.length; i++)
-	{			
-		// Get sample name as string
-		prefix = "{PROJECT_FOLDER}" + wgSamples.toString(1) + "/";	
-		name = samples[i].toString(3);
-		path = prefix + name;		
-
-		// Grab index of "root" from filename to find the sample's root
-		idx = name.indexOf("root") + 4;	
-		rootNote = name.substring(name.indexOf("_") + 1, name.indexOf("_") + 3);		
-		rootNote = name.substring(idx, idx+2);
-		rootNote = Math.round(rootNote);					
-				
-		// Calculate keyspan (where the sample will stretch to/from)
-		if (rootNote == 12)
-		{
-			lowKey = rootNote;
-			highKey = rootNote + 2;
-		}
-		if (rootNote == 88)
-		{
-			lowKey = rootNote - 3;
-			highKey = rootNote;					
-		}
-		else
-		{
-			lowKey = rootNote - 2;
-			highKey = rootNote + 2;	
-		}
-
-		// Load sample into buffer and calculate cycle length
-		var buffer = samples[i].loadAsAudioFile();		
-		hz = Engine.getFrequencyForMidiNoteNumber(rootNote);		
-		var cycle = Math.round(SAMPLERATE / hz);
-
-		// Setup loop points w/ respect to cycle
-		loopStart = buffer.length * LOOP_START;
-		loopEnd = loopStart + cycle;
-		loopFade = FADE_TIME; 
-		
-		// Parse RR group from filename
-		idx = name.indexOf("rr") + 2;
-		subString = name.substring(idx, idx+10); // pad for RR Groups > 10
-		rrGroup = subString.substring(0, subString.indexOf("_"));
-		rrGroup = Math.round(rrGroup);			
-		
-		// Populate sampleMap
-		var importedSample = Sampler1.asSampler().importSamples([path], true);		
-		for (s in importedSample)
-		{
-			// Assign sample properties
-			// This first one needs to loop (for some reason)
-			for (x = 3; x < 5; x++)
-			{
-				s.set(x, lowKey); // LOW KEY
-			}					
-			s.set(2, rootNote); // ROOT KEY
-			s.set(3, highKey); // HIGH KEY
-			s.set(5, lowVel); // LOW VELOCITY
-			s.set(6, highVel); // HIGH VELOCITY							
-			s.set(15, loopStart); // LOOP START
-			s.set(16, loopEnd); // LOOP END
-			s.set(17, loopFade); // LOOP FADE
-			s.set(18, 1); // LOOP ACTIVE (Bool)
-			
-			s.set(7, rrGroup); // RR GROUP
-
-			// 16-19: LOOP START, LOOP END, LOOP FADE, LOOP ACTIVE
-		}
-
-		// Save sampleMap
-		// Sampler.saveCurrentSampleMap(String relativePathWithoutXML)
-	}	
-}
