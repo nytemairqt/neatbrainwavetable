@@ -59,7 +59,69 @@ inline function sculptNaturalHarmonic(obj)
 	}
 }
 
-inline function sculptPinchharmonic(obj){}
+inline function sculptPinchHarmonic(obj)
+{
+	// Applies a variety of partial gain adjustments to shift a standard sustain closer to a pinch harmonic
+	// Pinch harmonics have the fundamental shifted to 2nd, includes 3rd & 4th harmonics, then dampens the rest
+	
+	// first we kill the fundamental
+	local fundamentalSpectralDistance = obj.frequency > TARGET ? obj.frequency - TARGET : TARGET - obj.frequency;
+	if (fundamentalSpectralDistance < 50.0)
+	{
+		obj.gain = 0.0;
+	}
+	
+	// boost 2nd order (new fundamental)
+	local secondSpectralDistance = obj.frequency > (TARGET * 2) ? obj.frequency - (TARGET * 2) : (TARGET * 2) - obj.frequency;
+	if (secondSpectralDistance < 50.0)
+	{
+		obj.gain *= 2.5; // tweak me 
+	}
+	
+	// kill 3rd order
+	local thirdSpectralDistance = obj.frequency > (TARGET * 3) ? obj.frequency - (TARGET * 3) : (TARGET * 3) - obj.frequency;
+	if (thirdSpectralDistance < 50.0)
+	{
+		obj.gain = 0.0; // tweak me
+	}
+
+	
+	// boost 4th order
+	local fourthSpectralDistance = obj.frequency > (TARGET * 4) ? obj.frequency - (TARGET * 4) : (TARGET * 4) - obj.frequency;
+	if (fourthSpectralDistance < 50.0)
+	{
+		obj.gain *= 2.0; // tweak me
+	}
+	
+	// kill 5th order
+	local fifthSpectralDistance = obj.frequency > (TARGET * 5) ? obj.frequency - (TARGET * 5) : (TARGET * 5) - obj.frequency;
+	if (fifthSpectralDistance < 50.0)
+	{
+		obj.gain = 0.0;
+	}
+	
+
+	// now dampen
+	local idx = obj.frequency / obj.rootFrequency;
+	local min = 20.0;
+	local max = 20000.0;	
+	local crossover = TARGET * 3.2; // start at 4th order harmonic
+
+	if (obj.frequency > crossover && obj.frequency < max)
+	{
+		local globalCoefficient = 1.0;
+		local distanceCoefficient = 0.0045; // tweak me
+		local spectralDistance = obj.frequency - crossover;
+		local attenuation = Math.exp(-spectralDistance * distanceCoefficient);
+		obj.gain *= attenuation;		
+	}
+
+	// Kills any potential aliasing frequencies as a result of the pitch shift
+	if (obj.frequency >= max)
+	{
+		obj.gain = 0.0;
+	}
+}
 
 inline function sculptPalmMute(obj)
 {
@@ -188,14 +250,17 @@ function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh, 
 		
 		// Dampen upper register harshness
 		// only used for sustains
-		if (DAMPENUPPERREGISTER)
-			lorisManager.processCustom(file, dampenUpperRegister);
+		//if (DAMPENUPPERREGISTER)
+			//lorisManager.processCustom(file, dampenUpperRegister);
+			
+		lorisManager.processCustom(file, sculptPinchHarmonic);
 		
 		// create natural harmonic
 		//lorisManager.processCustom(file, sculptNaturalHarmonic);
 		
 		// create palm mute // requires more dynamic dampening
 		//lorisManager.processCustom(file, sculptPalmMute);
+		
 		
 		// Resynthesize new waveguide
 		wt = lorisManager.synthesise(file);	
