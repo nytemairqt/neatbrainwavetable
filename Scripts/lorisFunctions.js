@@ -7,6 +7,15 @@ lorisManager.set("enablecache", "false");
 worker.setTimeOut(10000);
 worker.setForwardStatusToLoadingThread(true);
 
+inline function adjustHarmonicGain(partial, freq, target, tolerance, multiplier)
+{
+	// Adjusts the gains of any partials that lie within the tolerance of a target frequency	
+	local spectralDistance = freq > target ? freq - target : target - freq;
+	if (spectralDistance < tolerance)
+		partial.gain *= multiplier;
+}	
+
+
 inline function repitch(obj)
 {
 	// Repitches the audio buffer, allows for optional manual tuning
@@ -15,33 +24,19 @@ inline function repitch(obj)
 	obj.frequency *= ratio;		
 }
 
-inline function boostFundamental(obj)
-{
-	// Boosts frequencies around the fundamental, useful for sculpting tone before dampening
-	local spectralDistance = obj.frequency > TARGET ? obj.frequency - TARGET : TARGET - obj.frequency;
-	if (spectralDistance < 50.0)
-	{
-		obj.gain *= 5.0;
-	}
-}
-
 inline function sculptNaturalHarmonic(obj)
 {
 	// Applies a variety of partial gain adjustments to shift a standard sustain closer to a natural harmonic
 	// Harmonics have a boosted fundamental and high frequency dampening
-
+	
 	// boost fundamental
-	local spectralDistance = obj.frequency > TARGET ? obj.frequency - TARGET : TARGET - obj.frequency;
-	if (spectralDistance < 50.0)
-	{
-		obj.gain *= 4.0;
-	}
+	adjustHarmonicGain(obj, obj.frequency, TARGET, 50.0, 4.0);
 
 	// dampen overtones
 	local idx = obj.frequency / obj.rootFrequency;
 	local min = 20.0;
 	local max = 20000.0;	
-	local crossover = TARGET * 2; // second harmonic
+	local crossover = TARGET * 2; // starting at second harmonic
 
 	if (obj.frequency > crossover && obj.frequency < max)
 	{
@@ -54,9 +49,7 @@ inline function sculptNaturalHarmonic(obj)
 
 	// Kills any potential aliasing frequencies as a result of the pitch shift
 	if (obj.frequency >= max)
-	{
 		obj.gain = 0.0;
-	}
 }
 
 inline function sculptPinchHarmonic(obj)
@@ -64,43 +57,13 @@ inline function sculptPinchHarmonic(obj)
 	// Applies a variety of partial gain adjustments to shift a standard sustain closer to a pinch harmonic
 	// Pinch harmonics have the fundamental shifted to 2nd, includes 3rd & 4th harmonics, then dampens the rest
 	
-	// first we kill the fundamental
-	local fundamentalSpectralDistance = obj.frequency > TARGET ? obj.frequency - TARGET : TARGET - obj.frequency;
-	if (fundamentalSpectralDistance < 50.0)
-	{
-		obj.gain = 0.0;
-	}
+	// modify key partials:
+	adjustHarmonicGain(obj, obj.frequency, TARGET, 50.0, 0.0); // kill fundamental
+	adjustHarmonicGain(obj, obj.frequency, (TARGET * 2), 50.0, 2.5); // new fundamental
+	adjustHarmonicGain(obj, obj.frequency, (TARGET * 3), 50.0, 0.0); // kill 3rd
+	adjustHarmonicGain(obj, obj.frequency, (TARGET * 4), 50.0, 2.0); // boost 4th
+	adjustHarmonicGain(obj, obj.frequency, (TARGET * 5), 50.0, 0.0); // kill 5th
 	
-	// boost 2nd order (new fundamental)
-	local secondSpectralDistance = obj.frequency > (TARGET * 2) ? obj.frequency - (TARGET * 2) : (TARGET * 2) - obj.frequency;
-	if (secondSpectralDistance < 50.0)
-	{
-		obj.gain *= 2.5; // tweak me 
-	}
-	
-	// kill 3rd order
-	local thirdSpectralDistance = obj.frequency > (TARGET * 3) ? obj.frequency - (TARGET * 3) : (TARGET * 3) - obj.frequency;
-	if (thirdSpectralDistance < 50.0)
-	{
-		obj.gain = 0.0; // tweak me
-	}
-
-	
-	// boost 4th order
-	local fourthSpectralDistance = obj.frequency > (TARGET * 4) ? obj.frequency - (TARGET * 4) : (TARGET * 4) - obj.frequency;
-	if (fourthSpectralDistance < 50.0)
-	{
-		obj.gain *= 2.0; // tweak me
-	}
-	
-	// kill 5th order
-	local fifthSpectralDistance = obj.frequency > (TARGET * 5) ? obj.frequency - (TARGET * 5) : (TARGET * 5) - obj.frequency;
-	if (fifthSpectralDistance < 50.0)
-	{
-		obj.gain = 0.0;
-	}
-	
-
 	// now dampen
 	local idx = obj.frequency / obj.rootFrequency;
 	local min = 20.0;
@@ -118,9 +81,7 @@ inline function sculptPinchHarmonic(obj)
 
 	// Kills any potential aliasing frequencies as a result of the pitch shift
 	if (obj.frequency >= max)
-	{
 		obj.gain = 0.0;
-	}
 }
 
 inline function sculptPalmMute(obj)
@@ -145,9 +106,7 @@ inline function sculptPalmMute(obj)
 
 	// Kills any potential aliasing frequencies as a result of the pitch shift
 	if (obj.frequency >= max)
-	{
 		obj.gain = 0.0;
-	}
 }
 
 inline function dampenUpperRegister(obj)
