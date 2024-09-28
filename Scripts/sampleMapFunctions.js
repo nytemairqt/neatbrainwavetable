@@ -1,5 +1,3 @@
-const test = [];
-
 function buildSampleMap(articulation)
 {
 	// where articulation is string name of folder [residue, sustain, palmMute, naturalHarmonic, pinchHarmonic]
@@ -62,6 +60,8 @@ function buildSampleMap(articulation)
 	var samples = FileSystem.findFiles(samplesFolder, "*.wav", false);
 	Sampler1.asSampler().clearSampleMap(); // clear first to avoid overlapping samples
 
+	var samplesToImport = [];
+
 	// residue
 
 	if (articulation == "residue")
@@ -76,38 +76,41 @@ function buildSampleMap(articulation)
 			// Get sample name as string
 			prefix = "{PROJECT_FOLDER}" + samplesFolder.toString(1) + "/";	
 			name = samples[i].toString(3);
-			path = prefix + name;							
+			path = prefix + name;		
+
+			test.push(path);
 			
 			// Parse RR group from filename
 			idx = name.indexOf("rr") + 2;
 			subString = name.substring(idx, idx+10); // pad for RR Groups > 10
 			rrGroup = subString.substring(0, subString.indexOf("_"));
-			rrGroup = Math.round(rrGroup);			
-							
-			// Populate sampleMap
-			var importedSample = Sampler1.asSampler().importSamples([path], true);		
-		
-			for (s in importedSample)
-			{
-				// Assign sample properties
-				// This first one needs to loop (for some reason)
-				for (x = 3; x < 5; x++)
-				{
-					s.set(x, lowKey); // LOW KEY
-				}					
-				s.set(2, lowKey); // ROOT SAME AS LOW KEY FOR RESIDUE
-				s.set(3, highKey); // HIGH KEY
-				s.set(5, lowVel); // LOW VELOCITY
-				s.set(6, highVel); // HIGH VELOCITY							
-				s.set(18, 0); // LOOP ACTIVE (Bool)				
-				s.set(7, rrGroup); // RR GROUP
+			rrGroup = Math.round(rrGroup);		
 
-				// 16-19: LOOP START, LOOP END, LOOP FADE, LOOP ACTIVE
-			}
-
-			// Save sampleMap
-			Sampler1.asSampler().saveCurrentSampleMap(sampleMapName);
+			samplesToImport.push(path);											
 		}
+
+		// Populate sampleMap
+		var importedSamples = Sampler1.asSampler().importSamples(samplesToImport, false);
+		for (s in importedSamples)
+		{
+			// Assign sample properties
+			// This first one needs to loop (for some reason)
+			for (x = 3; x < 5; x++)
+			{
+				s.set(x, lowKey); // LOW KEY
+			}					
+			s.set(2, lowKey); // ROOT SAME AS LOW KEY FOR RESIDUE
+			s.set(3, highKey); // HIGH KEY
+			s.set(5, lowVel); // LOW VELOCITY
+			s.set(6, highVel); // HIGH VELOCITY							
+			s.set(18, 0); // LOOP ACTIVE (Bool)				
+			s.set(7, rrGroup); // RR GROUP
+
+			// 16-19: LOOP START, LOOP END, LOOP FADE, LOOP ACTIVE
+		}
+
+		// Save sampleMap
+		Sampler1.asSampler().saveCurrentSampleMap(sampleMapName);
 	}
 	else // add fx later
 	{

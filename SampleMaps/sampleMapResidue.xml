@@ -5,4 +5,46 @@
   <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}residue/residue_rr01.wav" Duplicate="0"
           LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr02.wav" Duplicate="0"
+          LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr03.wav" Duplicate="0"
+          LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr04.wav" Duplicate="0"
+          LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr05.wav" Duplicate="0"
+          LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr06.wav" Duplicate="0"
+          LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr07.wav" Duplicate="0"
+          LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr08.wav" Duplicate="0"
+          LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr09.wav" Duplicate="0"
+          LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr10.wav" Duplicate="0"
+          LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr11.wav" Duplicate="0"
+          LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr12.wav" Duplicate="0"
+          LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr13.wav" Duplicate="0"
+          LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr14.wav" Duplicate="0"
+          LoopEnabled="0"/>
+  <sample Root="12" LoKey="12" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr15.wav" Duplicate="0"
+          LoopEnabled="0"/>
 </samplemap>
