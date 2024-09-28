@@ -1,7 +1,6 @@
 // Instantiate Loris engine
 const lorisManager = Engine.getLorisManager();
 const worker = Engine.createBackgroundTask("Loris Processor");
-//lorisManager.set("timedomain", "0to1");
 lorisManager.set("timedomain", "seconds");
 lorisManager.set("enablecache", "false");
 worker.setTimeOut(10000);
@@ -19,9 +18,18 @@ inline function adjustHarmonicGain(partial, freq, target, tolerance, multiplier)
 inline function repitch(obj)
 {
 	// Repitches the audio buffer, allows for optional manual tuning
-	// Note: don't use Console.print() in Loris functions	
 	local ratio = USEMANUALTUNING ? TARGET / MANUAL_TUNING : TARGET / obj.rootFrequency;
 	obj.frequency *= ratio;		
+}
+
+inline function trimBuffer(buffer, trimStart, trimEnd)
+{
+	local output = [];
+	for (i=(buffer.length * trimStart); i<(buffer.length * trimEnd); i++)
+	{
+		output.push(buffer[i]);
+	}
+	return output;
 }
 
 inline function sculptNaturalHarmonic(obj)
@@ -132,9 +140,7 @@ inline function dampenUpperRegister(obj)
 	
 	// Kills any potential aliasing frequencies as a result of the pitch shift
 	if (obj.frequency >= max)
-	{
 		obj.gain = 0.0;
-	}
 }
 
 inline function saveAudio(path, buffer)
@@ -154,37 +160,68 @@ inline function abort()
 	return;
 }
 
+inline function extractWavetable(file, f0, targetPitch, articulation)
+{
+	// Analyze Audio Buffer
+	lorisManager.analyse(file, f0);
+
+	// Repitch
+	if (articulation != "residue")	
+		lorisManager.processCustom(file, repitch);	
+
+	switch(articulation)
+	{
+		case "sustain":
+			lorisManager.processCustom(file, dampenUpperRegister);		
+			break;
+		case "palmMute":
+			lorisManager.processCustom(file, sculptPalmMute);
+			break;
+		case "naturalHarmonic":
+			lorisManager.processCustom(file, sculptNaturalHarmonic);			
+			break;
+		case "pinchHarmonic":
+			lorisManager.processCustom(file, sculptPinchHarmonic);
+			break;
+		default:
+	}	
+	wt = lorisManager.synthesise(file);
+	wt = wt[0]; // grab the buffer
+
+	if (articulation != "residue") // i find it strange the residue isn't being trimmed, but w/e
+		wt = trimBuffer(wt, TRIM_START, TRIM_END); // trim
+
+	return wt;
+}
+
 
 // Extract & Resynthesize
-function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh, wgSamples, rsSamples)
+function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup, vl, vh)
 {
-	// Extracts the Residue and Waveguides from an audio buffer
+	// Extracts the Residue and all Waveguides from an audio buffer
 
 	// Initialize Variables
 	PENDING = true;	
 	if (worker.shouldAbort())
 		abort();
 	worker.setStatusMessage("Analyzing");
-	worker.setProgress(0.05);		
+	worker.setProgress(0.05);	
+
 	var wt;
 	var buffer = file.loadAsAudioFile();
 	var f0;		
-	var output = [];
 	var residue;
 	var fileName;
 	var path;
 
 	// Analyze Audio Buffer
 	f0 = buffer.detectPitch(SAMPLERATE, buffer.length * PITCH_START, buffer.length * PITCH_END);
-	lorisManager.analyse(file, f0);	
-	
-	// Extract Residue (Before Repitching)
-	if (EXTRACTRESIDUES)
+
+	if (EXTRACT_RESIDUE)
 	{
-		wt = lorisManager.synthesise(file);
-		wt = wt[0];
-		residue = buffer - wt; // Phase invert to extract Residue
-		
+		wt = extractWavetable(file, f0, targetPitch, "residue");
+		residue = buffer - wt;
+
 		// Naming convention workaround
 		if ((rrGroup + 1) < 10)
 			fileName = "0" + (rrGroup + 1) + ".wav";
@@ -192,51 +229,45 @@ function extractWavetable(file, targetPitch, targetNoteNumber, rrGroup, vl, vh, 
 			fileName = (rrGroup + 1) + ".wav";	
 				
 		// Save extracted residue to residue folder
-		path = rsSamples.getChildFile(fileName);		
-		saveAudio(path, residue)	;
-		Console.print("Wrote Residue");
+		saveAudio(SAMPLES_RESIDUE.getChildFile(fileName), residue);
+		Console.print("Wrote Residue to file");
 	}
-			
-	if (EXTRACTWAVETABLES)
-	{
-		// Repitch buffer to target
-		TARGET = targetPitch;
-		lorisManager.processCustom(file, repitch);	
 
-		// attempting to use applyFilter (currently not working)
-		//var filterData = [[0.0, 0], [0.2,  0], [0.4,  20000], [0.4, 10000], [0.6, 0]]; // these might be 0-1 instead of frequency
-		//lorisManager.process(file, "applyFilter", filterData); // applies a uniform gain multiplier with no time-modulation
-		
-		// Dampen upper register harshness
-		// only used for sustains
-		//if (DAMPENUPPERREGISTER)
-			//lorisManager.processCustom(file, dampenUpperRegister);
-			
-		lorisManager.processCustom(file, sculptPinchHarmonic);
-		
-		// create natural harmonic
-		//lorisManager.processCustom(file, sculptNaturalHarmonic);
-		
-		// create palm mute // requires more dynamic dampening
-		//lorisManager.processCustom(file, sculptPalmMute);
-		
-		
-		// Resynthesize new waveguide
-		wt = lorisManager.synthesise(file);	
-		wt = wt[0]; // Get the Buffer
-		
-		// Trim buffer start & end
-		for (i=(wt.length * TRIM_START); i<(wt.length * TRIM_END); i++) // KEEP ME
-		{
-			output.push(wt[i]);
-		}
-				
-		// Write waveguide to audio file
+	// changes the global reg "TARGET" to our new targetPitch (used in other funcs)
+	TARGET = targetPitch;
+
+	// now we're ready to repitch and modify the partials:
+
+	if (EXTRACT_SUSTAIN)
+	{
+		wt = extractWavetable(file, f0, targetPitch, "sustain");
+	
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + vl + "_vh" + vh + "_" + file.toString(3);
-		path = wgSamples.getChildFile(fileName);
-		saveAudio(path, output);	
-		Console.print("Wrote to file");		
+		saveAudio(SAMPLES_SUSTAIN.getChildFile(fileName), wt);	
+		Console.print("Wrote Sustain to file");	
 	}
+
+	if (EXTRACT_PALMMUTE)
+	{
+		wt = extractWavetable(file, f0, targetPitch, "palmMute");				
+		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + vl + "_vh" + vh + "_" + file.toString(3);
+		saveAudio(SAMPLES_PALMMUTE.getChildFile(fileName), wt);
+		Console.print("Wrote Palm Mute to file");			
+	}
+	if (EXTRACT_NATURALHARMONIC)
+	{
+		wt = extractWavetable(file, f0, targetPitch, "naturalHarmonic");
+		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + vl + "_vh" + vh + "_" + file.toString(3);
+		saveAudio(SAMPLES_NATURALHARMONIC.getChildFile(fileName), wt);
+		Console.print("Wrote Palm Mute to file");			
+	}
+	if (EXTRACT_PINCHHARMONIC)
+	{
+		wt = extractWavetable(file, f0, targetPitch, "pinchHarmonic");
+		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + vl + "_vh" + vh + "_" + file.toString(3);
+		saveAudio(SAMPLES_PINCHHARMONIC.getChildFile(fileName), wt);
+		Console.print("Wrote Palm Mute to file");			
+	}	
 
 	// Finish worker process
 	worker.setProgress(1.0);

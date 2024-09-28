@@ -1,14 +1,14 @@
 Content.makeFrontInterface(600, 600);
 
 // HYPERPAMETERS
-const EXTRACTWAVETABLES = true;
-const EXTRACTRESIDUES = false;
+const EXTRACT_RESIDUE = true;
+const EXTRACT_SUSTAIN = true;
+const EXTRACT_PALMMUTE = true;
+const EXTRACT_NATURALHARMONIC = true;
+const EXTRACT_PINCHHARMONIC = true;
+
 const BUILDSAMPLEMAP = false;
 const USEMANUALTUNING = false;
-const DAMPENUPPERREGISTER = true; // test implementation
-
-const WG_FOLDER = "pinchHarmonicTest";
-const RS_FOLDER = "leftRS";
 
 const PITCH_START = 0.1;
 const PITCH_END = 0.8;
@@ -32,6 +32,12 @@ reg TARGET = 440.0;
 const keyRange = [12, 17, 22, 27, 32, 37, 42, 47, 52, 57, 62, 67, 72, 77, 82, 88];
 const Sampler1 = Synth.getChildSynth("Sampler1");
 
+const SAMPLES_RESIDUE = SAMPLES.createDirectory("residue");
+const SAMPLES_SUSTAIN = SAMPLES.createDirectory("sustain");
+const SAMPLES_PALMMUTE = SAMPLES.createDirectory("palmMute");
+const SAMPLES_NATURALHARMONIC = SAMPLES.createDirectory("naturalHarmonic");
+const SAMPLES_PINCHHARMONIC = SAMPLES.createDirectory("pinchHarmonic");
+
 include("lorisFunctions.js");
 
 inline function onbtnExtractWaveguidesControl(component, value)
@@ -39,8 +45,8 @@ inline function onbtnExtractWaveguidesControl(component, value)
 	if (value)
 	{
 		// Create Directories
-		local WG_SAMPLES = SAMPLES.createDirectory(WG_FOLDER);
-		local RS_SAMPLES = SAMPLES.createDirectory(RS_FOLDER);
+		
+		
 		local audioFiles = FileSystem.findFiles(AUDIOFILES, "*.wav", false);
 		
 		// Main Loop
@@ -49,15 +55,15 @@ inline function onbtnExtractWaveguidesControl(component, value)
 			for (j=0; j<keyRange.length; j++) // For each registered key
 			{
 				//Console.clear();
-				local hz = Engine.getFrequencyForMidiNoteNumber(keyRange[j]);
-				extractWavetable(audioFiles[i], hz, keyRange[j], i, 1, 127, WG_SAMPLES, RS_SAMPLES);					
+				local targetPitch = Engine.getFrequencyForMidiNoteNumber(keyRange[j]);
+				extractAllWavetables(audioFiles[i], targetPitch, keyRange[j], i, 1, 127);					
 				Console.print("Audio File: " + (i+1) + "/" + audioFiles.length);
 				Console.print("Wavetable: " + (j+1) + "/" + keyRange.length);
 			}		
 		}									
-		//Console.clear();
+		Console.clear();
 		Console.print("Finished extracting Wavetables.");
-		buildSampleMap(WG_SAMPLES);					
+		//buildSampleMap(WG_SAMPLES);					
 	}	
 };
 
