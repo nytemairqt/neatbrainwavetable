@@ -2,580 +2,565 @@
 
 <samplemap CrossfadeGamma="1.0" ID="sampleMapSustain" RRGroupAmount="3.0"
            MicPositions=";">
-  <sample Root="47" LoKey="45" HiKey="49" LoVel="20" HiVel="80" RRGroup="1"
-          FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="47" LoKey="45" HiKey="49" LoVel="20" HiVel="80" RRGroup="1"
-          FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="47" LoKey="45" HiKey="49" LoVel="20" HiVel="80" RRGroup="1"
-          FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="47" LoKey="45" HiKey="49" LoVel="20" HiVel="80" RRGroup="1"
-          FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="47" LoKey="45" HiKey="49" LoVel="20" HiVel="80" RRGroup="1"
-          FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="47" LoKey="45" HiKey="49" LoVel="20" HiVel="80" RRGroup="1"
+  <sample Root="47" LoKey="45" HiKey="49" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="47" LoKey="45" HiKey="49" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="47" LoKey="45" HiKey="49" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="47" LoKey="45" HiKey="49" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="47" LoKey="45" HiKey="49" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="47" LoKey="45" HiKey="49" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="47" LoKey="45" HiKey="49" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="47" LoKey="45" HiKey="49" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="47" LoKey="45" HiKey="49" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="47" LoKey="45" HiKey="49" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="47" LoKey="45" HiKey="49" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="47" LoKey="45" HiKey="49" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="47" LoKey="45" HiKey="49" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="88" LoKey="85" HiKey="88" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="88" LoKey="85" HiKey="88" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz1319_root88_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="88" LoKey="85" HiKey="88" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="88" LoKey="85" HiKey="88" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz1319_root88_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="88" LoKey="85" HiKey="88" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="88" LoKey="85" HiKey="88" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz1319_root88_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="88" LoKey="85" HiKey="88" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="88" LoKey="85" HiKey="88" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz1319_root88_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="88" LoKey="85" HiKey="88" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="88" LoKey="85" HiKey="88" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz1319_root88_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="88" LoKey="85" HiKey="88" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="88" LoKey="85" HiKey="88" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz1319_root88_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="88" LoKey="85" HiKey="88" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="88" LoKey="85" HiKey="88" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz1319_root88_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="88" LoKey="85" HiKey="88" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="88" LoKey="85" HiKey="88" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz1319_root88_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="88" LoKey="85" HiKey="88" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="88" LoKey="85" HiKey="88" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz1319_root88_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="88" LoKey="85" HiKey="88" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="88" LoKey="85" HiKey="88" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz1319_root88_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="88" LoKey="85" HiKey="88" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="88" LoKey="85" HiKey="88" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz1319_root88_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="88" LoKey="85" HiKey="88" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="88" LoKey="85" HiKey="88" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz1319_root88_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="52" LoKey="50" HiKey="54" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="52" LoKey="50" HiKey="54" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz165_root52_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="52" LoKey="50" HiKey="54" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="52" LoKey="50" HiKey="54" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz165_root52_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="52" LoKey="50" HiKey="54" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="52" LoKey="50" HiKey="54" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz165_root52_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="52" LoKey="50" HiKey="54" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="52" LoKey="50" HiKey="54" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz165_root52_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="52" LoKey="50" HiKey="54" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="52" LoKey="50" HiKey="54" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz165_root52_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="52" LoKey="50" HiKey="54" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="52" LoKey="50" HiKey="54" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz165_root52_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="52" LoKey="50" HiKey="54" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="52" LoKey="50" HiKey="54" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz165_root52_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="52" LoKey="50" HiKey="54" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="52" LoKey="50" HiKey="54" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz165_root52_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="52" LoKey="50" HiKey="54" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="52" LoKey="50" HiKey="54" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz165_root52_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="52" LoKey="50" HiKey="54" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="52" LoKey="50" HiKey="54" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz165_root52_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="52" LoKey="50" HiKey="54" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="52" LoKey="50" HiKey="54" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz165_root52_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="52" LoKey="50" HiKey="54" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="52" LoKey="50" HiKey="54" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz165_root52_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="12" LoKey="10" HiKey="14" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz16_root12_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="12" LoKey="10" HiKey="14" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz16_root12_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="12" LoKey="10" HiKey="14" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz16_root12_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="12" LoKey="10" HiKey="14" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz16_root12_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="12" LoKey="10" HiKey="14" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz16_root12_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="12" LoKey="10" HiKey="14" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz16_root12_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="12" LoKey="10" HiKey="14" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz16_root12_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="12" LoKey="10" HiKey="14" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz16_root12_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="12" LoKey="10" HiKey="14" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz16_root12_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="12" LoKey="10" HiKey="14" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz16_root12_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="12" LoKey="10" HiKey="14" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz16_root12_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="12" LoKey="10" HiKey="14" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="12" LoKey="10" HiKey="14" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz16_root12_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="57" LoKey="55" HiKey="59" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="57" LoKey="55" HiKey="59" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz220_root57_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="57" LoKey="55" HiKey="59" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="57" LoKey="55" HiKey="59" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz220_root57_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="57" LoKey="55" HiKey="59" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="57" LoKey="55" HiKey="59" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz220_root57_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="57" LoKey="55" HiKey="59" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="57" LoKey="55" HiKey="59" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz220_root57_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="57" LoKey="55" HiKey="59" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="57" LoKey="55" HiKey="59" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz220_root57_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="57" LoKey="55" HiKey="59" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="57" LoKey="55" HiKey="59" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz220_root57_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="57" LoKey="55" HiKey="59" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="57" LoKey="55" HiKey="59" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz220_root57_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="57" LoKey="55" HiKey="59" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="57" LoKey="55" HiKey="59" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz220_root57_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="57" LoKey="55" HiKey="59" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="57" LoKey="55" HiKey="59" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz220_root57_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="57" LoKey="55" HiKey="59" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="57" LoKey="55" HiKey="59" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz220_root57_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="57" LoKey="55" HiKey="59" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="57" LoKey="55" HiKey="59" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz220_root57_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="57" LoKey="55" HiKey="59" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="57" LoKey="55" HiKey="59" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz220_root57_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="17" LoKey="15" HiKey="19" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz22_root17_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="17" LoKey="15" HiKey="19" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz22_root17_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="17" LoKey="15" HiKey="19" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz22_root17_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="17" LoKey="15" HiKey="19" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz22_root17_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="17" LoKey="15" HiKey="19" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz22_root17_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="17" LoKey="15" HiKey="19" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz22_root17_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="17" LoKey="15" HiKey="19" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz22_root17_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="17" LoKey="15" HiKey="19" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz22_root17_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="17" LoKey="15" HiKey="19" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz22_root17_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="17" LoKey="15" HiKey="19" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz22_root17_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="17" LoKey="15" HiKey="19" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz22_root17_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="17" LoKey="15" HiKey="19" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="17" LoKey="15" HiKey="19" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz22_root17_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="62" LoKey="60" HiKey="64" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="62" LoKey="60" HiKey="64" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz294_root62_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="62" LoKey="60" HiKey="64" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="62" LoKey="60" HiKey="64" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz294_root62_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="62" LoKey="60" HiKey="64" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="62" LoKey="60" HiKey="64" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz294_root62_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="62" LoKey="60" HiKey="64" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="62" LoKey="60" HiKey="64" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz294_root62_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="62" LoKey="60" HiKey="64" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="62" LoKey="60" HiKey="64" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz294_root62_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="62" LoKey="60" HiKey="64" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="62" LoKey="60" HiKey="64" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz294_root62_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="62" LoKey="60" HiKey="64" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="62" LoKey="60" HiKey="64" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz294_root62_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="62" LoKey="60" HiKey="64" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="62" LoKey="60" HiKey="64" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz294_root62_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="62" LoKey="60" HiKey="64" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="62" LoKey="60" HiKey="64" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz294_root62_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="62" LoKey="60" HiKey="64" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="62" LoKey="60" HiKey="64" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz294_root62_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="62" LoKey="60" HiKey="64" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="62" LoKey="60" HiKey="64" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz294_root62_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="62" LoKey="60" HiKey="64" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="62" LoKey="60" HiKey="64" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz294_root62_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="22" LoKey="20" HiKey="24" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz29_root22_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="22" LoKey="20" HiKey="24" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz29_root22_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="22" LoKey="20" HiKey="24" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz29_root22_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="22" LoKey="20" HiKey="24" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz29_root22_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="22" LoKey="20" HiKey="24" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz29_root22_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="22" LoKey="20" HiKey="24" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz29_root22_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="22" LoKey="20" HiKey="24" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz29_root22_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="22" LoKey="20" HiKey="24" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz29_root22_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="22" LoKey="20" HiKey="24" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz29_root22_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="22" LoKey="20" HiKey="24" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz29_root22_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="22" LoKey="20" HiKey="24" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz29_root22_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="22" LoKey="20" HiKey="24" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="22" LoKey="20" HiKey="24" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz29_root22_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="67" LoKey="65" HiKey="69" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="67" LoKey="65" HiKey="69" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz392_root67_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="67" LoKey="65" HiKey="69" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="67" LoKey="65" HiKey="69" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz392_root67_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="67" LoKey="65" HiKey="69" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="67" LoKey="65" HiKey="69" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz392_root67_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="67" LoKey="65" HiKey="69" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="67" LoKey="65" HiKey="69" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz392_root67_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="67" LoKey="65" HiKey="69" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="67" LoKey="65" HiKey="69" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz392_root67_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="67" LoKey="65" HiKey="69" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="67" LoKey="65" HiKey="69" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz392_root67_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="67" LoKey="65" HiKey="69" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="67" LoKey="65" HiKey="69" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz392_root67_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="67" LoKey="65" HiKey="69" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="67" LoKey="65" HiKey="69" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz392_root67_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="67" LoKey="65" HiKey="69" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="67" LoKey="65" HiKey="69" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz392_root67_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="67" LoKey="65" HiKey="69" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="67" LoKey="65" HiKey="69" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz392_root67_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="67" LoKey="65" HiKey="69" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="67" LoKey="65" HiKey="69" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz392_root67_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="67" LoKey="65" HiKey="69" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="67" LoKey="65" HiKey="69" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz392_root67_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="27" LoKey="25" HiKey="29" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="27" LoKey="25" HiKey="29" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz39_root27_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="27" LoKey="25" HiKey="29" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="27" LoKey="25" HiKey="29" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz39_root27_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="27" LoKey="25" HiKey="29" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="27" LoKey="25" HiKey="29" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz39_root27_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="27" LoKey="25" HiKey="29" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="27" LoKey="25" HiKey="29" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz39_root27_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="27" LoKey="25" HiKey="29" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="27" LoKey="25" HiKey="29" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz39_root27_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="27" LoKey="25" HiKey="29" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="27" LoKey="25" HiKey="29" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz39_root27_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="27" LoKey="25" HiKey="29" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="27" LoKey="25" HiKey="29" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz39_root27_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="27" LoKey="25" HiKey="29" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="27" LoKey="25" HiKey="29" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz39_root27_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="27" LoKey="25" HiKey="29" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="27" LoKey="25" HiKey="29" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz39_root27_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="27" LoKey="25" HiKey="29" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="27" LoKey="25" HiKey="29" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz39_root27_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="27" LoKey="25" HiKey="29" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="27" LoKey="25" HiKey="29" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz39_root27_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="27" LoKey="25" HiKey="29" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="27" LoKey="25" HiKey="29" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz39_root27_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="72" LoKey="70" HiKey="74" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="72" LoKey="70" HiKey="74" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz523_root72_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="72" LoKey="70" HiKey="74" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="72" LoKey="70" HiKey="74" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz523_root72_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="72" LoKey="70" HiKey="74" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="72" LoKey="70" HiKey="74" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz523_root72_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="72" LoKey="70" HiKey="74" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="72" LoKey="70" HiKey="74" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz523_root72_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="72" LoKey="70" HiKey="74" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="72" LoKey="70" HiKey="74" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz523_root72_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="72" LoKey="70" HiKey="74" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="72" LoKey="70" HiKey="74" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz523_root72_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="72" LoKey="70" HiKey="74" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="72" LoKey="70" HiKey="74" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz523_root72_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="72" LoKey="70" HiKey="74" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="72" LoKey="70" HiKey="74" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz523_root72_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="72" LoKey="70" HiKey="74" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="72" LoKey="70" HiKey="74" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz523_root72_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="72" LoKey="70" HiKey="74" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="72" LoKey="70" HiKey="74" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz523_root72_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="72" LoKey="70" HiKey="74" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="72" LoKey="70" HiKey="74" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz523_root72_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="72" LoKey="70" HiKey="74" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="72" LoKey="70" HiKey="74" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz523_root72_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="32" LoKey="30" HiKey="34" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="32" LoKey="30" HiKey="34" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz52_root32_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="32" LoKey="30" HiKey="34" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="32" LoKey="30" HiKey="34" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz52_root32_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="32" LoKey="30" HiKey="34" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="32" LoKey="30" HiKey="34" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz52_root32_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="32" LoKey="30" HiKey="34" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="32" LoKey="30" HiKey="34" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz52_root32_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="32" LoKey="30" HiKey="34" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="32" LoKey="30" HiKey="34" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz52_root32_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="32" LoKey="30" HiKey="34" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="32" LoKey="30" HiKey="34" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz52_root32_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="32" LoKey="30" HiKey="34" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="32" LoKey="30" HiKey="34" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz52_root32_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="32" LoKey="30" HiKey="34" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="32" LoKey="30" HiKey="34" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz52_root32_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="32" LoKey="30" HiKey="34" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="32" LoKey="30" HiKey="34" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz52_root32_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="32" LoKey="30" HiKey="34" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="32" LoKey="30" HiKey="34" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz52_root32_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="32" LoKey="30" HiKey="34" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="32" LoKey="30" HiKey="34" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz52_root32_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="32" LoKey="30" HiKey="34" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="32" LoKey="30" HiKey="34" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz52_root32_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="77" LoKey="75" HiKey="79" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="77" LoKey="75" HiKey="79" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz698_root77_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="77" LoKey="75" HiKey="79" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="77" LoKey="75" HiKey="79" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz698_root77_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="77" LoKey="75" HiKey="79" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="77" LoKey="75" HiKey="79" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz698_root77_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="77" LoKey="75" HiKey="79" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="77" LoKey="75" HiKey="79" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz698_root77_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="77" LoKey="75" HiKey="79" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="77" LoKey="75" HiKey="79" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz698_root77_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="77" LoKey="75" HiKey="79" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="77" LoKey="75" HiKey="79" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz698_root77_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="77" LoKey="75" HiKey="79" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="77" LoKey="75" HiKey="79" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz698_root77_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="77" LoKey="75" HiKey="79" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="77" LoKey="75" HiKey="79" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz698_root77_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="77" LoKey="75" HiKey="79" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="77" LoKey="75" HiKey="79" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz698_root77_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="77" LoKey="75" HiKey="79" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="77" LoKey="75" HiKey="79" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz698_root77_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="77" LoKey="75" HiKey="79" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="77" LoKey="75" HiKey="79" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz698_root77_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="77" LoKey="75" HiKey="79" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="77" LoKey="75" HiKey="79" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz698_root77_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="37" LoKey="35" HiKey="39" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="37" LoKey="35" HiKey="39" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz69_root37_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="37" LoKey="35" HiKey="39" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="37" LoKey="35" HiKey="39" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz69_root37_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="37" LoKey="35" HiKey="39" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="37" LoKey="35" HiKey="39" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz69_root37_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="37" LoKey="35" HiKey="39" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="37" LoKey="35" HiKey="39" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz69_root37_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="37" LoKey="35" HiKey="39" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="37" LoKey="35" HiKey="39" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz69_root37_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="37" LoKey="35" HiKey="39" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="37" LoKey="35" HiKey="39" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz69_root37_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="37" LoKey="35" HiKey="39" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="37" LoKey="35" HiKey="39" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz69_root37_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="37" LoKey="35" HiKey="39" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="37" LoKey="35" HiKey="39" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz69_root37_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="37" LoKey="35" HiKey="39" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="37" LoKey="35" HiKey="39" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz69_root37_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="37" LoKey="35" HiKey="39" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="37" LoKey="35" HiKey="39" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz69_root37_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="37" LoKey="35" HiKey="39" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="37" LoKey="35" HiKey="39" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz69_root37_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="37" LoKey="35" HiKey="39" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="37" LoKey="35" HiKey="39" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz69_root37_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="42" LoKey="40" HiKey="44" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="42" LoKey="40" HiKey="44" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz92_root42_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="42" LoKey="40" HiKey="44" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="42" LoKey="40" HiKey="44" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz92_root42_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="42" LoKey="40" HiKey="44" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="42" LoKey="40" HiKey="44" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz92_root42_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="42" LoKey="40" HiKey="44" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="42" LoKey="40" HiKey="44" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz92_root42_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="42" LoKey="40" HiKey="44" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="42" LoKey="40" HiKey="44" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz92_root42_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="42" LoKey="40" HiKey="44" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="42" LoKey="40" HiKey="44" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz92_root42_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="42" LoKey="40" HiKey="44" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="42" LoKey="40" HiKey="44" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz92_root42_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="42" LoKey="40" HiKey="44" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="42" LoKey="40" HiKey="44" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz92_root42_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="42" LoKey="40" HiKey="44" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="42" LoKey="40" HiKey="44" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz92_root42_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="42" LoKey="40" HiKey="44" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="42" LoKey="40" HiKey="44" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz92_root42_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="42" LoKey="40" HiKey="44" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="42" LoKey="40" HiKey="44" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz92_root42_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="42" LoKey="40" HiKey="44" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="42" LoKey="40" HiKey="44" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz92_root42_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="82" LoKey="80" HiKey="84" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="82" LoKey="80" HiKey="84" LoVel="126" HiVel="126" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz932_root82_rr1_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="82" LoKey="80" HiKey="84" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="82" LoKey="80" HiKey="84" LoVel="127" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz932_root82_rr1_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="82" LoKey="80" HiKey="84" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="82" LoKey="80" HiKey="84" LoVel="1" HiVel="64" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz932_root82_rr1_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="82" LoKey="80" HiKey="84" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="82" LoKey="80" HiKey="84" LoVel="65" HiVel="125" RRGroup="1"
           FileName="{PROJECT_FOLDER}waveguide/hz932_root82_rr1_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="82" LoKey="80" HiKey="84" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="82" LoKey="80" HiKey="84" LoVel="126" HiVel="126" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz932_root82_rr2_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="82" LoKey="80" HiKey="84" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="82" LoKey="80" HiKey="84" LoVel="127" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz932_root82_rr2_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="82" LoKey="80" HiKey="84" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="82" LoKey="80" HiKey="84" LoVel="1" HiVel="64" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz932_root82_rr2_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="82" LoKey="80" HiKey="84" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="82" LoKey="80" HiKey="84" LoVel="65" HiVel="125" RRGroup="2"
           FileName="{PROJECT_FOLDER}waveguide/hz932_root82_rr2_vl65_vh125.wav"
-          Duplicate="0"/>
-  <sample Root="82" LoKey="80" HiKey="84" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="82" LoKey="80" HiKey="84" LoVel="126" HiVel="126" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz932_root82_rr3_vl126_vh126.wav"
-          Duplicate="0"/>
-  <sample Root="82" LoKey="80" HiKey="84" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="82" LoKey="80" HiKey="84" LoVel="127" HiVel="127" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz932_root82_rr3_vl127_vh127.wav"
-          Duplicate="0"/>
-  <sample Root="82" LoKey="80" HiKey="84" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="82" LoKey="80" HiKey="84" LoVel="1" HiVel="64" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz932_root82_rr3_vl1_vh64.wav"
-          Duplicate="0"/>
-  <sample Root="82" LoKey="80" HiKey="84" LoVel="20" HiVel="80" RRGroup="1"
+          Duplicate="0" LoopEnabled="1"/>
+  <sample Root="82" LoKey="80" HiKey="84" LoVel="65" HiVel="125" RRGroup="3"
           FileName="{PROJECT_FOLDER}waveguide/hz932_root82_rr3_vl65_vh125.wav"
-          Duplicate="0"/>
+          Duplicate="0" LoopEnabled="1"/>
 </samplemap>
