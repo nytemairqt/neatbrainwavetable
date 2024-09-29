@@ -7,8 +7,7 @@ function buildSampleMap(articulation)
 
 	var samples;
 	var samplesFolder;
-	var sampleMapName;
-	
+	var sampleMapName;	
 	var prefix;
 	var name;
 	var path;
@@ -18,6 +17,7 @@ function buildSampleMap(articulation)
 	var highVel;	
 	var rrGroup;
 	var rootNote;
+	var sT; // the stringified version of our sample name
 	var idx;
 	var idxEnd;
 	var subString;
@@ -44,6 +44,7 @@ function buildSampleMap(articulation)
 	}
 
 	Sampler1.asSampler().clearSampleMap(); // clear first to avoid overlapping samples	
+	
 
 	// residue
 
@@ -70,10 +71,7 @@ function buildSampleMap(articulation)
 
 			// Populate sampleMap
 			var importedSamples = Sampler1.asSampler().importSamples([path], false);		
-				
-			// Set the RR Group Amount
-			Sampler1.setAttribute(Sampler1.RRGroupAmount, NUM_ROUNDROBINS);
-		
+						
 			for (s in importedSamples)
 			{				
 				// Assign sample properties
@@ -101,9 +99,159 @@ function buildSampleMap(articulation)
 		for (i=0; i<samples.length; i++)
 		{
 			// Get sample name as string
-			prefix = "{PROJECT_FOLDER}" + folder.toString(1) + "/";	
+			prefix = "{PROJECT_FOLDER}" + samplesFolder.toString(1) + "/";	
 			name = samples[i].toString(3);
-			path = prefix + name;		
+			path = prefix + name;
+
+			// Set the RR Group Amount & Import Samples
+			
+			var importedSamples = Sampler1.asSampler().importSamples([path], false);
+
+			for (s in importedSamples)
+			{	
+				//test.push(s.get(Sampler.FileName));
+			
+
+				sT = s.get(Sampler.FileName);
+				idx = sT.indexOf("root") + 4;
+				subString = sT.substring(idx, sT.length);
+				idxEnd = subString.indexOf("_");
+				subString = subString.substring(0, idxEnd);
+				rootNote = Math.round(subString);	
+
+				test.push(rootNote);
+
+				// Calculate keyspan (where the sample will stretch to/from)
+				
+				if (rootNote == 12)
+				{
+					lowKey = rootNote;
+					highKey = rootNote + 2;
+				}
+				if (rootNote == 88)
+				{
+					lowKey = rootNote - 3;
+					highKey = rootNote;					
+				}
+				else
+				{
+					lowKey = rootNote - 2;
+					highKey = rootNote + 2;	
+				}							
+				
+
+				// Low Key (Bugged)
+				
+				for (x = 3; x < 5; x++)
+				{
+					s.set(x, lowKey);
+				}
+				
+				
+				
+				
+				//s.set(Sampler.LoKey, 64);		// doesn't work					
+				
+				s.set(Sampler.Root, rootNote);	
+				s.set(Sampler.HiKey, highKey);
+				s.set(Sampler.LoVel, 20);
+				s.set(Sampler.HiVel, 80);
+				
+				
+
+				/*
+							
+				// Assign sample properties
+				s.set(Sampler.Root, rootNote);
+				s.set(Sampler.LoKey, lowKey);
+				s.set(Sampler.HiKey, highKey);
+				s.set(Sampler.LoVel, lowVel);
+				s.set(Sampler.HiVel, highVel);
+				s.set(Sampler.LoopEnabled, 1);				
+				s.set(Sampler.RRGroup, rrGroup);					
+
+				// still needs: loop start, loop end, loop fade
+				s.set(Sampler.LoopStart, (Sampler.SampleEnd * .7));
+				*/
+				
+				
+			}
+
+			/*
+			
+			for (s in importedSamples)
+			{	
+				//test.push(s.get(Sampler.FileName));
+
+				
+
+				sT = s.get(Sampler.FileName);
+				idx = sT.indexOf("root") + 4;
+				subString = sT.substring(idx, sT.length);
+				idxEnd = subString.indexOf("_");
+				subString = subString.substring(0, idxEnd);
+				rootNote = Math.round(subString);	
+
+				test.push(rootNote);
+
+				// Calculate keyspan (where the sample will stretch to/from)
+				
+				if (rootNote == 12)
+				{
+					lowKey = rootNote;
+					highKey = rootNote + 2;
+				}
+				if (rootNote == 88)
+				{
+					lowKey = rootNote - 3;
+					highKey = rootNote;					
+				}
+				else
+				{
+					lowKey = rootNote - 2;
+					highKey = rootNote + 2;	
+				}							
+				
+
+				// Low Key (Bugged)
+				
+				for (x = 3; x < 5; x++)
+				{
+					s.set(x, lowKey);
+				}
+				
+				
+				
+				
+				//s.set(Sampler.LoKey, 64);		// doesn't work					
+				
+				s.set(Sampler.Root, rootNote);	
+				s.set(Sampler.HiKey, highKey);
+				s.set(Sampler.LoVel, 20);
+				s.set(Sampler.HiVel, 80);
+				
+				
+
+				/*
+							
+				// Assign sample properties
+				s.set(Sampler.Root, rootNote);
+				s.set(Sampler.LoKey, lowKey);
+				s.set(Sampler.HiKey, highKey);
+				s.set(Sampler.LoVel, lowVel);
+				s.set(Sampler.HiVel, highVel);
+				s.set(Sampler.LoopEnabled, 1);				
+				s.set(Sampler.RRGroup, rrGroup);					
+
+				// still needs: loop start, loop end, loop fade
+				s.set(Sampler.LoopStart, (Sampler.SampleEnd * .7));
+				
+				
+			}	
+
+			*/
+
+			/*
 
 			// Grab index of "root" from filename to find the sample's root
 			idx = name.indexOf("root") + 4;	
@@ -123,7 +271,13 @@ function buildSampleMap(articulation)
 			// HighVel
 			idx = subString.indexOf("vh") + 2;
 			idxEnd = subString.length;
-			highVel = Math.round(subString.substring(idx, idxEnd));			
+			highVel = Math.round(subString.substring(idx, idxEnd));	
+			
+			// Cycle Length
+			idx = name.indexOf("hz") + 2;
+			idxEnd = name.indexOf("_");
+			subString = name.substring(idx, idxEnd);
+			
 					
 			// Calculate keyspan (where the sample will stretch to/from)
 			if (rootNote == 12)
@@ -158,24 +312,15 @@ function buildSampleMap(articulation)
 			rrGroup = subString.substring(0, subString.indexOf("_"));
 			rrGroup = Math.round(rrGroup);	
 
-			var importedSamples = Sampler1.asSampler().importSamples([path], true);
+			
 
-			// Set the RR Group Amount
-			Sampler1.setAttribute(Sampler1.RRGroupAmount, NUM_ROUNDROBINS);
+			
+
+			test.push(importedSamples);
 		
-			for (s in importedSamples)
-			{				
-				// Assign sample properties
-				s.set(Sampler.Root, lowKey);
-				s.set(Sampler.LoKey, lowKey);
-				s.set(Sampler.HiKey, highKey);
-				s.set(Sampler.LoVel, lowVel);
-				s.set(Sampler.HiVel, highVel);
-				s.set(Sampler.LoopEnabled, 1);				
-				s.set(Sampler.RRGroup, rrGroup);					
+				
 
-				// still needs: loop start, loop end, loop fade
-			}		
+			*/
 
 
 		}

@@ -60,6 +60,10 @@ inline function onbtnExtractWaveguidesControl(component, value)
 		}									
 		Console.clear();
 		Console.print("Finished extracting Wavetables.");
+
+		// Set the RR Groups here to avoid crash
+		Sampler1.setAttribute(Sampler1.RRGroupAmount, NUM_ROUNDROBINS);
+
 		buildSampleMap("residue");					
 		buildSampleMap("sustain");
 	}	
