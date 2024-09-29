@@ -27,6 +27,7 @@ const TRIM_END = 0.7;
 const LOOP_START = 0.3;
 const FADE_TIME = 15;
 const SAMPLERATE = 44100.0;
+const NUM_ROUNDROBINS = 15;
 const keyRange = [12, 17, 22, 27, 32, 37, 42, 47, 52, 57, 62, 67, 72, 77, 82, 88];
 reg PENDING = false;
 reg TARGET = 440.0;
@@ -60,7 +61,7 @@ inline function onbtnExtractWaveguidesControl(component, value)
 		Console.clear();
 		Console.print("Finished extracting Wavetables.");
 		buildSampleMap("residue");					
-		buildSampleMap("sustain");		
+		buildSampleMap("sustain");
 	}	
 };
 

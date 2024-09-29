@@ -43,8 +43,6 @@ function buildSampleMap(articulation)
 		sampleMapName = "sampleMapSustain";
 	}
 
-	
-	var samplesToImport = [];
 	Sampler1.asSampler().clearSampleMap(); // clear first to avoid overlapping samples	
 
 	// residue
@@ -67,30 +65,27 @@ function buildSampleMap(articulation)
 			
 			// Parse RR group from filename
 			idx = name.indexOf("rr") + 2;
-			subString = name.substring(idx, idx+10); // pad for RR Groups > 10
-			rrGroup = subString.substring(0, subString.indexOf("_"));
-			rrGroup = Math.round(rrGroup);												
-		}
+			subString = name.substring(idx, idx+2);
+			rrGroup = Math.round(subString);	
 
-		// Populate sampleMap
-		var importedSamples = Sampler1.asSampler().importSamples([path], true);
-		for (s in importedSamples)
-		{
-			// Assign sample properties
-			// This first one needs to loop (for some reason)
-			for (x = 3; x < 5; x++)
-			{
-				s.set(x, lowKey); // LOW KEY
-			}					
-			s.set(2, lowKey); // ROOT SAME AS LOW KEY FOR RESIDUE
-			s.set(3, highKey); // HIGH KEY
-			s.set(5, lowVel); // LOW VELOCITY
-			s.set(6, highVel); // HIGH VELOCITY							
-			s.set(18, 0); // LOOP ACTIVE (Bool)				
-			s.set(7, rrGroup); // RR GROUP
-
-			// 16-19: LOOP START, LOOP END, LOOP FADE, LOOP ACTIVE
-		}
+			// Populate sampleMap
+			var importedSamples = Sampler1.asSampler().importSamples([path], false);		
+				
+			// Set the RR Group Amount
+			Sampler1.setAttribute(Sampler1.RRGroupAmount, NUM_ROUNDROBINS);
+		
+			for (s in importedSamples)
+			{				
+				// Assign sample properties
+				s.set(Sampler.Root, lowKey);
+				s.set(Sampler.LoKey, lowKey);
+				s.set(Sampler.HiKey, highKey);
+				s.set(Sampler.LoVel, lowVel);
+				s.set(Sampler.HiVel, highVel);
+				s.set(Sampler.LoopEnabled, 0);				
+				s.set(Sampler.RRGroup, rrGroup);				
+			}			
+		}		
 
 		// Save sampleMap
 		Sampler1.asSampler().saveCurrentSampleMap(sampleMapName);
@@ -164,23 +159,24 @@ function buildSampleMap(articulation)
 			rrGroup = Math.round(rrGroup);	
 
 			var importedSamples = Sampler1.asSampler().importSamples([path], true);
-			for (s in importedSamples)
-			{
-				// Assign sample properties
-				// This first one needs to loop (for some reason)
-				for (x = 3; x < 5; x++)
-				{
-					s.set(x, lowKey); // LOW KEY
-				}					
-				s.set(2, lowKey); // ROOT SAME AS LOW KEY FOR RESIDUE
-				s.set(3, highKey); // HIGH KEY
-				s.set(5, lowVel); // LOW VELOCITY
-				s.set(6, highVel); // HIGH VELOCITY							
-				s.set(18, 1); // LOOP ACTIVE (Bool)				
-				s.set(7, rrGroup); // RR GROUP
 
-				// 16-19: LOOP START, LOOP END, LOOP FADE, LOOP ACTIVE
-			}
+			// Set the RR Group Amount
+			Sampler1.setAttribute(Sampler1.RRGroupAmount, NUM_ROUNDROBINS);
+		
+			for (s in importedSamples)
+			{				
+				// Assign sample properties
+				s.set(Sampler.Root, lowKey);
+				s.set(Sampler.LoKey, lowKey);
+				s.set(Sampler.HiKey, highKey);
+				s.set(Sampler.LoVel, lowVel);
+				s.set(Sampler.HiVel, highVel);
+				s.set(Sampler.LoopEnabled, 1);				
+				s.set(Sampler.RRGroup, rrGroup);					
+
+				// still needs: loop start, loop end, loop fade
+			}		
+
 
 		}
 				
