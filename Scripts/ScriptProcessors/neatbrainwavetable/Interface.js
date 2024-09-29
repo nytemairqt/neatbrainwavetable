@@ -7,10 +7,8 @@ const SAMPLEMAPS = FileSystem.getFolder(FileSystem.Samples).getParentDirectory()
 const Sampler1 = Synth.getChildSynth("Sampler1");
 
 const SAMPLES_RESIDUE = SAMPLES.createDirectory("residue");
-const SAMPLES_SUSTAIN = SAMPLES.createDirectory("sustain");
-const SAMPLES_PALMMUTE = SAMPLES.createDirectory("palmMute");
-const SAMPLES_NATURALHARMONIC = SAMPLES.createDirectory("naturalHarmonic");
-const SAMPLES_PINCHHARMONIC = SAMPLES.createDirectory("pinchHarmonic");
+const SAMPLES_WAVEGUIDE = SAMPLES.createDirectory("waveguide");
+const SAMPLES_FX = SAMPLES.createDirectory("fx");
 
 // HYPERPAMETERS
 const EXTRACT_RESIDUE = false;
@@ -62,6 +60,7 @@ inline function onbtnExtractWaveguidesControl(component, value)
 		Console.clear();
 		Console.print("Finished extracting Wavetables.");
 		buildSampleMap("residue");					
+		buildSampleMap("sustain");		
 	}	
 };
 

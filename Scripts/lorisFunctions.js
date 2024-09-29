@@ -242,28 +242,28 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup)
 		wt = extractWavetable(file, f0, targetPitch, "sustain");
 	
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 65 + "_vh" + 125 + file.toString(2);
-		saveAudio(SAMPLES_SUSTAIN.getChildFile(fileName), wt);	
+		saveAudio(SAMPLES_WAVEGUIDE.getChildFile(fileName), wt);	
 		Console.print("Wrote Sustain to file");	
 	}
 	if (EXTRACT_PALMMUTE)
 	{
 		wt = extractWavetable(file, f0, targetPitch, "palmMute");				
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 1 + "_vh" + 64 + file.toString(2);
-		saveAudio(SAMPLES_PALMMUTE.getChildFile(fileName), wt);
+		saveAudio(SAMPLES_WAVEGUIDE.getChildFile(fileName), wt);
 		Console.print("Wrote Palm Mute to file");			
 	}
 	if (EXTRACT_NATURALHARMONIC)
 	{
 		wt = extractWavetable(file, f0, targetPitch, "naturalHarmonic");
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 126 + "_vh" + 126 + file.toString(2);
-		saveAudio(SAMPLES_NATURALHARMONIC.getChildFile(fileName), wt);
+		saveAudio(SAMPLES_WAVEGUIDE.getChildFile(fileName), wt);
 		Console.print("Wrote Palm Mute to file");			
 	}
 	if (EXTRACT_PINCHHARMONIC)
 	{
 		wt = extractWavetable(file, f0, targetPitch, "pinchHarmonic");
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 127 + "_vh" + 127 + file.toString(2);
-		saveAudio(SAMPLES_PINCHHARMONIC.getChildFile(fileName), wt);
+		saveAudio(SAMPLES_WAVEGUIDE.getChildFile(fileName), wt);
 		Console.print("Wrote Palm Mute to file");			
 	}	
 
