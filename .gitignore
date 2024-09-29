@@ -1,3 +1,5 @@
 /AudioFiles
 /Binaries
 /Samples
+/Scripts/__pycache__
+/Scripts/venv

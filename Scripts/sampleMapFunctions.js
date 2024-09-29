@@ -12,10 +12,44 @@ inline function getSampleParameter(sample, parameter)
 	return(value);
 }
 
+inline function createXMLSampleMapHeader(name)
+{
+	local json = {
+		"CrossfadeGamma" : 1.0,
+		"ID" : name,
+		"RRGroupAmount" : NUM_ROUNDROBINS,
+		"MicPositions" : ";"
+	};
+
+	return json;
+}
+
+inline function createJSONSample(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade)
+{
+	local json = {
+		"Root" : root,
+		"LoKey" : loKey,
+		"HiKey" : hiKey,
+		"LoVel" : loVel, 
+		"HiVel" : hiVel,
+		"RRGroup" : rrGroup, 
+		"FileName" : fileName,
+		"LoopEnabled" : loopEnabled,
+		"LoopStart" : loopStart,
+		"LoopEnd" : loopEnd,
+		"LoopXFade" : loopXFade
+	};
+
+	return json;
+}
+
 function buildSampleMap(articulation)
 {
 	if (!BUILDSAMPLEMAP)
 		return;
+		
+	Console.clear();
+	Console.print("Building sampleMap: " + articulation);
 
 	var samples;
 	var samplesFolder;
@@ -115,8 +149,27 @@ function buildSampleMap(articulation)
 			name = samples[i].toString(3);
 			path = prefix + name;
 
+			var jsonHeader = createXMLSampleMapHeader("sampleMapSustain");
+			var jsonSampleTest;
+			var arrayTest = [];
+			arrayTest.push(jsonHeader);
+
+			for (j=0; j<3; j++)
+			{
+				jsonSampleTest = createJSONSample(24, 32, 64, 40, 110, j, "{PROJECT_FOLDER}residue/residue_rr01.wav", 1, 33101, 38000, 20);
+				arrayTest.push(jsonSampleTest);
+			}
+
+			var fileTest = FileSystem.getFolder(FileSystem.Samples).getChildFile("sampleMapSustain.xml");
+
+			fileTest.writeAsXmlFile(arrayTest, "sample");
+
+			
+
 			// Import Samples			
-			var importedSamples = Sampler1.asSampler().importSamples([path], false);
+			//var importedSamples = Sampler1.asSampler().importSamples([path], true);
+			
+			/*
 
 			// Set Sample Parameters
 			for (s in importedSamples)
@@ -143,6 +196,7 @@ function buildSampleMap(articulation)
 					highKey = rootNote + 2;	
 				}							
 				
+				
 				// Fix for lowKey not working
 				for (x = 3; x < 5; x++)
 				{
@@ -163,6 +217,7 @@ function buildSampleMap(articulation)
 				s.set(Sampler.LoopStart, (s.get(Sampler.SampleEnd) * .7));
 				s.set(Sampler.LoopEnd, (s.get(Sampler.LoopStart) + cycleLength));				
 				s.set(Sampler.LoopXFade, FADE_TIME);
+				
 
 				
 				/*

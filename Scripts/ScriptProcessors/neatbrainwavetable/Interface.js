@@ -51,7 +51,7 @@ inline function onbtnExtractWaveguidesControl(component, value)
 		{
 			for (j=0; j<keyRange.length; j++) // For each registered key
 			{
-				//Console.clear();
+				Console.clear();
 				local targetPitch = Engine.getFrequencyForMidiNoteNumber(keyRange[j]);
 				extractAllWavetables(audioFiles[i], targetPitch, keyRange[j], i);					
 				Console.print("Audio File: " + (i+1) + "/" + audioFiles.length);
@@ -64,7 +64,7 @@ inline function onbtnExtractWaveguidesControl(component, value)
 		// Set the RR Groups here to avoid crash
 		Sampler1.setAttribute(Sampler1.RRGroupAmount, NUM_ROUNDROBINS);
 
-		buildSampleMap("residue");					
+		//buildSampleMap("residue"); // DONT FORGET ME 
 		buildSampleMap("sustain");
 	}	
 };
