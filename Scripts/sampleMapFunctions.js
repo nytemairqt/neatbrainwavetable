@@ -154,6 +154,16 @@ function buildSampleMap(articulation)
 				s.set(Sampler.HiVel, highVel);
 				s.set(Sampler.LoopEnabled, 1);				
 				s.set(Sampler.RRGroup, rrGroup);
+
+				// Loop
+
+				var hz = getSampleParameter(s, "hz");
+				var cycleLength = SAMPLERATE / hz;
+				//s.set(Sampler.LoopStart, (Sampler.SampleEnd * .7));
+				s.set(Sampler.LoopStart, (s.get(Sampler.SampleEnd) * .7));
+				s.set(Sampler.LoopEnd, (s.get(Sampler.LoopStart) + cycleLength));				
+				s.set(Sampler.LoopXFade, FADE_TIME);
+
 				
 				/*
 				// still needs: loop start, loop end, loop fade

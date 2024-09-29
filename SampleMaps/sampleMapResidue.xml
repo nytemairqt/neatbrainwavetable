@@ -3,7 +3,7 @@
 <samplemap CrossfadeGamma="1.0" ID="sampleMapResidue" RRGroupAmount="15.0"
            MicPositions=";">
   <sample Root="12" LoKey="0" HiKey="88" LoVel="1" HiVel="127" RRGroup="1"
-          FileName="{PROJECT_FOLDER}residue/residue_rr01.wav" Duplicate="1"
+          FileName="{PROJECT_FOLDER}residue/residue_rr01.wav" Duplicate="0"
           LoopEnabled="0"/>
   <sample Root="12" LoKey="0" HiKey="88" LoVel="1" HiVel="127" RRGroup="2"
           FileName="{PROJECT_FOLDER}residue/residue_rr02.wav" Duplicate="1"
