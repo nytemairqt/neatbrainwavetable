@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<samplemap CrossfadeGamma="1.0" ID="tree" RRGroupAmount="15" MicPositions=";">
+<samplemap CrossfadeGamma="1.0" ID="../SampleMaps/sampleMapWaveguide" RRGroupAmount="15" MicPositions=";">
   <sample Root="47" LoKey="45" HiKey="49" LoVel="126" HiVel="126" RRGroup="10" FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr10_vl126_vh126.wav" LoopEnabled="1" LoopStart="36000" LoopEnd="36358" LoopXFade="15"/>
   <sample Root="47" LoKey="45" HiKey="49" LoVel="127" HiVel="127" RRGroup="10" FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr10_vl127_vh127.wav" LoopEnabled="1" LoopStart="36000" LoopEnd="36358" LoopXFade="15"/>
   <sample Root="47" LoKey="45" HiKey="49" LoVel="1" HiVel="64" RRGroup="10" FileName="{PROJECT_FOLDER}waveguide/hz123_root47_rr10_vl1_vh64.wav" LoopEnabled="1" LoopStart="36000" LoopEnd="36358" LoopXFade="15"/>
