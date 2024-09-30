@@ -14,7 +14,6 @@ inline function adjustHarmonicGain(partial, freq, target, tolerance, multiplier)
 		partial.gain *= multiplier;
 }	
 
-
 inline function repitch(obj)
 {
 	// Repitches the audio buffer, allows for optional manual tuning
@@ -115,6 +114,9 @@ inline function sculptPalmMute(obj)
 	// Kills any potential aliasing frequencies as a result of the pitch shift
 	if (obj.frequency >= max)
 		obj.gain = 0.0;
+
+	// Apply Uniform Gain Boost
+	obj.gain *= 2;
 }
 
 inline function dampenUpperRegister(obj)
@@ -123,16 +125,16 @@ inline function dampenUpperRegister(obj)
 	local idx = obj.frequency / obj.rootFrequency;
 	local min = 20.0;
 	local max = 20000.0;	
-	local pad = 100.0;
+	local pad = 0.0;
 	local rootMax = 1400.0;
-	local stringCutoff = 220.0;
+	local stringCutoff = 165.0;
 	local crossover = TARGET + pad;
 	local normalizedF0 = (TARGET - min) / (rootMax - min);
 		
 	if (obj.frequency > crossover && obj.frequency < max && TARGET > stringCutoff)
 	{
 		local globalCoefficient = 1.0;
-		local distanceCoefficient = 0.003;		
+		local distanceCoefficient = 0.0025;		
 		local spectralDistance = obj.frequency - crossover;
 		local attenuation = Math.exp(-spectralDistance * ((distanceCoefficient * normalizedF0) * globalCoefficient));
 		obj.gain *= attenuation;		
@@ -176,6 +178,7 @@ inline function extractWavetable(file, f0, targetPitch, articulation)
 			break;
 		case "palmMute":
 			lorisManager.processCustom(file, sculptPalmMute);
+			lorisManager.processCustom(file, dampenUpperRegister); // try 			
 			break;
 		case "naturalHarmonic":
 			lorisManager.processCustom(file, sculptNaturalHarmonic);			
