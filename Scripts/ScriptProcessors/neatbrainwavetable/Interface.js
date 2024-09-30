@@ -11,13 +11,13 @@ const SAMPLES_WAVEGUIDE = SAMPLES.createDirectory("waveguide");
 const SAMPLES_FX = SAMPLES.createDirectory("fx");
 
 // HYPERPAMETERS
-const EXTRACT_RESIDUE = false;
-const EXTRACT_SUSTAIN = false;
-const EXTRACT_PALMMUTE = false;
-const EXTRACT_NATURALHARMONIC = false;
-const EXTRACT_PINCHHARMONIC = false;
+const EXTRACT_RESIDUE = true;
+const EXTRACT_SUSTAIN = true;
+const EXTRACT_PALMMUTE = true;
+const EXTRACT_NATURALHARMONIC = true;
+const EXTRACT_PINCHHARMONIC = true;
 
-const BUILDSAMPLEMAP = true;
+const BUILDSAMPLEMAP = false;
 const USEMANUALTUNING = false;
 
 const PITCH_START = 0.1;

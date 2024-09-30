@@ -4,27 +4,44 @@ import xml.etree.ElementTree as ET
 import xml.dom.minidom as minidom
 import soundfile as sf 
 
-waveguide = "../Samples/waveguide/"
-residue = "../Samples/residue/"
-fx = "../Samples/fx/"
+wgLeft = "../Samples/wgLeft/"
+wgRight = "../Samples/wgRight/"
+rsLeft = "../Samples/rsLeft/"
+rsRight = "../Samples/rsRight/"
+fxLeft = "../Samples/fxLeft/"
+fxRight = "../Samples/fxRight/"
 sampleMaps = "../SampleMaps/"
+
+xml_wgLeft = "../SampleMaps/wgLeft"
+xml_wgRight = "../SampleMaps/wgRight"
+xml_rsLeft = "../SampleMaps/rsLeft"
+xml_rsRight = "../SampleMaps/rsRight"
+xml_fxLeft = "../SampleMaps/fxLeft"
+xml_fxRight = "../SampleMaps/fxRight"
+
+#waveguide = "../Samples/wgRight/"
+#residue = "../Samples/rsRight/"
+#fx = "../Samples/fx/"
+#sampleMaps = "../SampleMaps/"
 
 BUILD_WAVEGUIDE = True
 BUILD_RESIDUE = True
 BUILD_FX = False 
+STEREO_INSTRUMENT = True 
 
 NUM_ROUNDROBINS = 15
 SAMPLERATE = 44100
-FILENAME_WAVEGUIDE = '../SampleMaps/sampleMapWaveguide'
-FILENAME_RESIDUE = '../SampleMaps/sampleMapResidue'
-FILENAME_FX = '../SampleMaps/sampleMapFX'
+
+#FILENAME_WAVEGUIDE = '../SampleMaps/rightWG'
+#FILENAME_RESIDUE = '../SampleMaps/rightRS'
+#FILENAME_FX = '../SampleMaps/sampleMapFX'
 
 ##
 
 def createXMLSampleMapHeader(name):
 	json = {
 		"CrossfadeGamma" : 1.0,
-		"ID" : name,
+		"ID" : name[name.find("SampleMaps/")+11:],
 		"RRGroupAmount" : NUM_ROUNDROBINS,
 		"MicPositions" : ";"
 	}
@@ -33,7 +50,7 @@ def createXMLSampleMapHeader(name):
 		header.set(key, str(value))
 	return header 
 
-def parseWaveguide(name):
+def parseWaveguide(name, right=False):
 	# Parses waveguide file name and creates a JSON object for transferring to XML
 
 	# fullPath = "../Samples/waveguide/" + name # || TESTING ONLY
@@ -72,11 +89,7 @@ def parseWaveguide(name):
 		hiKey = root 
 	else:
 		loKey = root - 2
-		hiKey = root + 2
-
-	# Loop
-	loopEnabled = 1 
-	loopXFade = 15
+		hiKey = root + 2	
 
 	# Cycle Length Calculation
 	start = name.find("hz") + 2
@@ -85,14 +98,21 @@ def parseWaveguide(name):
 	hz = int(substring[:])
 	cycle = int(SAMPLERATE / hz) 
 
-	loopStart = int(60000 * .6)
-	loopEnd = int(loopStart + cycle )
+	# Loop
+	loopEnabled = 1
+	loopStart = 40000
+	loopEnd = loopStart + cycle 
+	loopXFade = 15
 
 	# FileName
-	fileName = r"{PROJECT_FOLDER}waveguide/" + name 
+	if (right):
+		fileName = r"{PROJECT_FOLDER}wgRight/" + name
+	else:
+		fileName = r"{PROJECT_FOLDER}wgLeft/" + name
+	
 	return root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade
 
-def parseResidue(name):
+def parseResidue(name, right=False):
 	# Parses residue file name and creates a JSON object for transferring to XML
 
 	# Residue is much simpler:
@@ -108,14 +128,17 @@ def parseResidue(name):
 	substring = substring[0:substring.find(".")] # not _ 
 	rrGroup = substring[:]
 
-	# Loop
+	# Loop (Arbitrary non-zero values)
 	loopEnabled = 0
-	loopXFade = 0
-	loopStart = 0 
-	loopEnd = 1 
+	loopXFade = 5
+	loopStart = 5 
+	loopEnd = 20 
 
 	# FileName
-	fileName = r"{PROJECT_FOLDER}residue/" + name
+	if (right):
+		fileName = r"{PROJECT_FOLDER}rsRight/" + name
+	else:
+		fileName = r"{PROJECT_FOLDER}rsLeft/" + name
 	return root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade
 
 
@@ -137,15 +160,16 @@ def createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loo
 
 if __name__ == "__main__":
 
+	# LEFT SIDE FIRST 
+
 	# Waveguide
 	if BUILD_WAVEGUIDE:
-		header = createXMLSampleMapHeader(FILENAME_WAVEGUIDE)
+		header = createXMLSampleMapHeader(xml_wgLeft)
 		tree = ET.ElementTree(header)
-
 		
-		for root, dirs, files in os.walk(waveguide):
+		for root, dirs, files in os.walk(wgLeft):
 			for name in files:
-				root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade = parseWaveguide(name)
+				root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade = parseWaveguide(name, right=False)
 				json = createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade)
 				sample = ET.SubElement(header, "sample")
 				for key, value in json.items():
@@ -157,19 +181,19 @@ if __name__ == "__main__":
 		pretty_xml = parsed_string.toprettyxml(indent="  ")
 
 		# Write Out
-		with open(FILENAME_WAVEGUIDE + '.xml', "w") as file:
+		with open(xml_wgLeft + '.xml', "w") as file:
 			file.write(pretty_xml)
 
 		print("Saved Waveguide.")
 
 	# Residue
 	if BUILD_RESIDUE:
-		header = createXMLSampleMapHeader(FILENAME_RESIDUE)
+		header = createXMLSampleMapHeader(xml_rsLeft)
 		tree = ET.ElementTree(header)
 		
-		for root, dirs, files in os.walk(residue):
+		for root, dirs, files in os.walk(rsLeft):
 			for name in files:
-				root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade = parseResidue(name)
+				root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade = parseResidue(name, right=False)
 				json = createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade)
 				sample = ET.SubElement(header, "sample")
 				for key, value in json.items():
@@ -181,7 +205,62 @@ if __name__ == "__main__":
 		pretty_xml = parsed_string.toprettyxml(indent="  ")
 
 		# Write Out
-		with open(FILENAME_RESIDUE + '.xml', "w") as file:
+		with open(xml_rsLeft + '.xml', "w") as file:
 			file.write(pretty_xml)
 
-		print("Saved Residue.")
+		print("Saved Residue Left.")
+
+	############################
+	# RIGHT SIDE 
+
+	if STEREO_INSTRUMENT:
+
+		# Waveguide
+		if BUILD_WAVEGUIDE:
+			header = createXMLSampleMapHeader(xml_wgRight)
+			tree = ET.ElementTree(header)
+			
+			for root, dirs, files in os.walk(wgRight):
+				for name in files:
+					root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade = parseWaveguide(name, right=True)
+					json = createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade)
+					sample = ET.SubElement(header, "sample")
+					for key, value in json.items():
+						sample.set(key, str(value))
+
+			# "Prettify" 
+			rough_string = ET.tostring(header, 'utf-8')
+			parsed_string = minidom.parseString(rough_string)
+			pretty_xml = parsed_string.toprettyxml(indent="  ")
+
+			# Write Out
+			with open(xml_wgRight + '.xml', "w") as file:
+				file.write(pretty_xml)
+
+			print("Saved Waveguide.")
+
+		# Residue
+		if BUILD_RESIDUE:
+			header = createXMLSampleMapHeader(xml_rsRight)
+			tree = ET.ElementTree(header)
+			
+			for root, dirs, files in os.walk(rsRight):
+				for name in files:
+					root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade = parseResidue(name, right=True)
+					json = createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade)
+					sample = ET.SubElement(header, "sample")
+					for key, value in json.items():
+						sample.set(key, str(value))
+
+			# "Prettify" 
+			rough_string = ET.tostring(header, 'utf-8')
+			parsed_string = minidom.parseString(rough_string)
+			pretty_xml = parsed_string.toprettyxml(indent="  ")
+
+			# Write Out
+			with open(xml_rsRight + '.xml', "w") as file:
+				file.write(pretty_xml)
+
+			print("Saved Residue Left.")
+
+
