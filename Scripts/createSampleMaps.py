@@ -19,11 +19,6 @@ xml_rsRight = "../SampleMaps/rsRight"
 xml_fxLeft = "../SampleMaps/fxLeft"
 xml_fxRight = "../SampleMaps/fxRight"
 
-#waveguide = "../Samples/wgRight/"
-#residue = "../Samples/rsRight/"
-#fx = "../Samples/fx/"
-#sampleMaps = "../SampleMaps/"
-
 BUILD_WAVEGUIDE = True
 BUILD_RESIDUE = True
 BUILD_FX = False 
@@ -31,10 +26,6 @@ STEREO_INSTRUMENT = True
 
 NUM_ROUNDROBINS = 15
 SAMPLERATE = 44100
-
-#FILENAME_WAVEGUIDE = '../SampleMaps/rightWG'
-#FILENAME_RESIDUE = '../SampleMaps/rightRS'
-#FILENAME_FX = '../SampleMaps/sampleMapFX'
 
 ##
 
