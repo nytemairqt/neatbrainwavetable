@@ -196,7 +196,7 @@ inline function extractWavetable(file, f0, targetPitch, articulation)
 
 
 // Extract & Resynthesize
-function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup)
+function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup, right)
 {
 	// Extracts the Residue and all Waveguides from an audio buffer
 
@@ -213,6 +213,9 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup)
 	var residue;
 	var fileName;
 	var path;
+	var outputRS = right ? SAMPLES_RESIDUE_RIGHT : SAMPLES_RESIDUE_LEFT;
+	var outputWG = right ? SAMPLES_WAVEGUIDE_RIGHT : SAMPLES_WAVEGUIDE_LEFT;
+	var outputFX = right ? SAMPLES_FX_RIGHT : SAMPLES_FX_LEFT;
 
 	// Analyze Audio Buffer
 	f0 = buffer.detectPitch(SAMPLERATE, buffer.length * PITCH_START, buffer.length * PITCH_END);
@@ -229,7 +232,8 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup)
 			fileName = "residue_" + "rr" + (rrGroup + 1) + ".wav";	
 				
 		// Save extracted residue to residue folder
-		saveAudio(SAMPLES_RESIDUE.getChildFile(fileName), residue);
+		//saveAudio(SAMPLES_RESIDUE.getChildFile(fileName), residue);
+		saveAudio(outputRS.getChildFile(fileName), residue);
 		Console.print("Wrote Residue to file");
 	}
 
@@ -242,28 +246,28 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup)
 		wt = extractWavetable(file, f0, targetPitch, "sustain");
 	
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 65 + "_vh" + 125 + file.toString(2);
-		saveAudio(SAMPLES_WAVEGUIDE.getChildFile(fileName), wt);	
+		saveAudio(outputWG.getChildFile(fileName), wt);	
 		Console.print("Wrote Sustain to file");	
 	}
 	if (EXTRACT_PALMMUTE)
 	{
 		wt = extractWavetable(file, f0, targetPitch, "palmMute");				
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 1 + "_vh" + 64 + file.toString(2);
-		saveAudio(SAMPLES_WAVEGUIDE.getChildFile(fileName), wt);
+		saveAudio(outputWG.getChildFile(fileName), wt);
 		Console.print("Wrote Palm Mute to file");			
 	}
 	if (EXTRACT_NATURALHARMONIC)
 	{
 		wt = extractWavetable(file, f0, targetPitch, "naturalHarmonic");
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 126 + "_vh" + 126 + file.toString(2);
-		saveAudio(SAMPLES_WAVEGUIDE.getChildFile(fileName), wt);
+		saveAudio(outputWG.getChildFile(fileName), wt);
 		Console.print("Wrote Palm Mute to file");			
 	}
 	if (EXTRACT_PINCHHARMONIC)
 	{
 		wt = extractWavetable(file, f0, targetPitch, "pinchHarmonic");
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 127 + "_vh" + 127 + file.toString(2);
-		saveAudio(SAMPLES_WAVEGUIDE.getChildFile(fileName), wt);
+		saveAudio(outputWG.getChildFile(fileName), wt);
 		Console.print("Wrote Palm Mute to file");			
 	}	
 

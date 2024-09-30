@@ -1,14 +1,18 @@
 Content.makeFrontInterface(600, 600);
 
-// FOLDER STRUCTURE
+// FOLDERS
 const AUDIOFILES = FileSystem.getFolder(FileSystem.AudioFiles);
 const SAMPLES = FileSystem.getFolder(FileSystem.Samples);
 const SAMPLEMAPS = FileSystem.getFolder(FileSystem.Samples).getParentDirectory().getChildFile("sampleMaps");
 const Sampler1 = Synth.getChildSynth("Sampler1");
 
-const SAMPLES_RESIDUE = SAMPLES.createDirectory("residue");
-const SAMPLES_WAVEGUIDE = SAMPLES.createDirectory("waveguide");
-const SAMPLES_FX = SAMPLES.createDirectory("fx");
+// STEREO SUPPORT
+const SAMPLES_RESIDUE_LEFT = SAMPLES.createDirectory("rsLeft");
+const SAMPLES_RESIDUE_RIGHT = SAMPLES.createDirectory("rsRight");
+const SAMPLES_WAVEGUIDE_LEFT = SAMPLES.createDirectory("wgLeft");
+const SAMPLES_WAVEGUIDE_RIGHT = SAMPLES.createDirectory("wgRight");
+const SAMPLES_FX_LEFT = SAMPLES.createDirectory("fxLeft");
+const SAMPLES_FX_RIGHT = SAMPLES.createDirectory("fxRight");
 
 // HYPERPAMETERS
 const EXTRACT_RESIDUE = true;
@@ -16,9 +20,8 @@ const EXTRACT_SUSTAIN = true;
 const EXTRACT_PALMMUTE = true;
 const EXTRACT_NATURALHARMONIC = true;
 const EXTRACT_PINCHHARMONIC = true;
-
-const BUILDSAMPLEMAP = false;
 const USEMANUALTUNING = false;
+const STEREO_INSTRUMENT = true;
 
 const PITCH_START = 0.1;
 const PITCH_END = 0.8;
@@ -40,33 +43,49 @@ const MANUAL_TUNING = 130.8; // bs c string 12
 
 // INCLUDES
 include("lorisFunctions.js");
-include("sampleMapFunctions.js");
+
 // INTERFACE
 inline function onbtnExtractWaveguidesControl(component, value)
 {
-	if (value)
+	if (!value)
+		return;
+	else
 	{
-		local audioFiles = FileSystem.findFiles(AUDIOFILES, "*.wav", false);
+		// Left Side (Or Mono)
+		local audioFiles = FileSystem.findFiles(AUDIOFILES.getChildFile("left"), "*.wav", false);
 		for (i=0; i<audioFiles.length; i++) // For each audio file
 		{
 			for (j=0; j<keyRange.length; j++) // For each registered key
 			{
 				Console.clear();
 				local targetPitch = Engine.getFrequencyForMidiNoteNumber(keyRange[j]);
-				extractAllWavetables(audioFiles[i], targetPitch, keyRange[j], i);					
+				extractAllWavetables(audioFiles[i], targetPitch, keyRange[j], i, false); // left side
 				Console.print("Audio File: " + (i+1) + "/" + audioFiles.length);
 				Console.print("Wavetable: " + (j+1) + "/" + keyRange.length);
 			}		
 		}									
 		Console.clear();
-		Console.print("Finished extracting Wavetables.");
+		Console.print("Finished extracting left waveguides.");
 
-		// Set the RR Groups here to avoid crash
-		Sampler1.setAttribute(Sampler1.RRGroupAmount, NUM_ROUNDROBINS);
-
-		//buildSampleMap("residue"); // DONT FORGET ME 
-		buildSampleMap("sustain");
-	}	
+		if (STEREO_INSTRUMENT)
+		{
+			// Right Side
+			local audioFiles = FileSystem.findFiles(AUDIOFILES.getChildFile("right"), "*.wav", false);
+			for (i=0; i<audioFiles.length; i++) // For each audio file
+			{
+				for (j=0; j<keyRange.length; j++) // For each registered key
+				{
+					Console.clear();
+					local targetPitch = Engine.getFrequencyForMidiNoteNumber(keyRange[j]);
+					extractAllWavetables(audioFiles[i], targetPitch, keyRange[j], i, true); // left side
+					Console.print("Audio File: " + (i+1) + "/" + audioFiles.length);
+					Console.print("Wavetable: " + (j+1) + "/" + keyRange.length);
+				}		
+			}									
+			Console.clear();
+			Console.print("Finished extracting left waveguides.");
+		}
+	}
 };
 
 Content.getComponent("btnExtractWaveguides").setControlCallback(onbtnExtractWaveguidesControl);
