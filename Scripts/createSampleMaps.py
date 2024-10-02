@@ -94,6 +94,7 @@ def parseWaveguide(name, right=False):
 	loopStart = 40000
 	loopEnd = loopStart + cycle 
 	loopXFade = 15
+	sampleStartMod = 0
 
 	# FileName
 	if (right):
@@ -101,7 +102,7 @@ def parseWaveguide(name, right=False):
 	else:
 		fileName = r"{PROJECT_FOLDER}wgLeft/" + name
 	
-	return root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade
+	return root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade, sampleStartMod
 
 def parseResidue(name, right=False):
 	# Parses residue file name and creates a JSON object for transferring to XML
@@ -124,16 +125,17 @@ def parseResidue(name, right=False):
 	loopXFade = 5
 	loopStart = 5 
 	loopEnd = 20 
+	sampleStartMod = 2000
 
 	# FileName
 	if (right):
 		fileName = r"{PROJECT_FOLDER}rsRight/" + name
 	else:
 		fileName = r"{PROJECT_FOLDER}rsLeft/" + name
-	return root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade
+	return root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade, sampleStartMod
 
 
-def createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade):
+def createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade, sampleStartMod):
 	json = {
 		"Root" : root,
 		"LoKey" : loKey,
@@ -145,7 +147,8 @@ def createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loo
 		"LoopEnabled" : loopEnabled,
 		"LoopStart" : loopStart,
 		"LoopEnd" : loopEnd,
-		"LoopXFade" : loopXFade
+		"LoopXFade" : loopXFade,
+		"SampleStartMod" : sampleStartMod
 	}
 	return json
 
@@ -160,8 +163,8 @@ if __name__ == "__main__":
 		
 		for root, dirs, files in os.walk(wgLeft):
 			for name in files:
-				root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade = parseWaveguide(name, right=False)
-				json = createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade)
+				root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade, sampleStartMod = parseWaveguide(name, right=False)
+				json = createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade, sampleStartMod)
 				sample = ET.SubElement(header, "sample")
 				for key, value in json.items():
 					sample.set(key, str(value))
@@ -184,8 +187,8 @@ if __name__ == "__main__":
 		
 		for root, dirs, files in os.walk(rsLeft):
 			for name in files:
-				root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade = parseResidue(name, right=False)
-				json = createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade)
+				root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade, sampleStartMod = parseResidue(name, right=False)
+				json = createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade, sampleStartMod)
 				sample = ET.SubElement(header, "sample")
 				for key, value in json.items():
 					sample.set(key, str(value))
@@ -213,8 +216,8 @@ if __name__ == "__main__":
 			
 			for root, dirs, files in os.walk(wgRight):
 				for name in files:
-					root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade = parseWaveguide(name, right=True)
-					json = createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade)
+					root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade, sampleStartMod = parseWaveguide(name, right=True)
+					json = createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade, sampleStartMod)
 					sample = ET.SubElement(header, "sample")
 					for key, value in json.items():
 						sample.set(key, str(value))
@@ -237,8 +240,8 @@ if __name__ == "__main__":
 			
 			for root, dirs, files in os.walk(rsRight):
 				for name in files:
-					root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade = parseResidue(name, right=True)
-					json = createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade)
+					root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade, sampleStartMod = parseResidue(name, right=True)
+					json = createJSONFromParse(root, loKey, hiKey, loVel, hiVel, rrGroup, fileName, loopEnabled, loopStart, loopEnd, loopXFade, sampleStartMod)
 					sample = ET.SubElement(header, "sample")
 					for key, value in json.items():
 						sample.set(key, str(value))
