@@ -91,6 +91,31 @@ inline function sculptPinchHarmonic(obj)
 		obj.gain = 0.0;
 }
 
+inline function sculptHammer(obj)
+{
+	// Applies a variety of partial gain adjustments to shift a standard sustain closer to a hammer on/pull off
+	// Hammers have a modified residue attack, and dampening that starts around the 4th harmonic
+	
+	// apply dampen
+	local idx = obj.frequency / obj.rootFrequency;
+	local min = 20.0;
+	local max = 20000.0;	
+	local crossover = TARGET * 4; // start at 4th order harmonic
+
+	if (obj.frequency > crossover && obj.frequency < max)
+	{
+		local globalCoefficient = 1.0;
+		local distanceCoefficient = 0.0045; // tweak me
+		local spectralDistance = obj.frequency - crossover;
+		local attenuation = Math.exp(-spectralDistance * distanceCoefficient);
+		obj.gain *= attenuation;		
+	}
+
+	// Kills any potential aliasing frequencies as a result of the pitch shift
+	if (obj.frequency >= max)
+		obj.gain = 0.0;
+}
+
 inline function sculptPalmMute(obj)
 {
 	// Applies a variety of partial gain adjustments to shift a standard sustain closer to a palm mute
@@ -186,6 +211,9 @@ inline function extractWavetable(file, f0, targetPitch, articulation)
 		case "pinchHarmonic":
 			lorisManager.processCustom(file, sculptPinchHarmonic);
 			break;
+		case "hammer":
+			lorisManager.processCustom(file, sculptHammer);
+			break;
 		default:
 	}	
 	wt = lorisManager.synthesise(file);
@@ -244,20 +272,27 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup, righ
 	TARGET = targetPitch;
 
 	// Now extract the wavetables
-	if (EXTRACT_SUSTAIN)
-	{
-		wt = extractWavetable(file, f0, targetPitch, "sustain");
-	
-		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 65 + "_vh" + 125 + file.toString(2);
-		saveAudio(outputWG.getChildFile(fileName), wt);	
-		Console.print("Wrote Sustain to file");	
-	}
 	if (EXTRACT_PALMMUTE)
 	{
 		wt = extractWavetable(file, f0, targetPitch, "palmMute");				
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 1 + "_vh" + 64 + file.toString(2);
 		saveAudio(outputWG.getChildFile(fileName), wt);
 		Console.print("Wrote Palm Mute to file");			
+	}
+	if (EXTRACT_SUSTAIN)
+	{
+		wt = extractWavetable(file, f0, targetPitch, "sustain");
+	
+		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 65 + "_vh" + 124 + file.toString(2);
+		saveAudio(outputWG.getChildFile(fileName), wt);	
+		Console.print("Wrote Sustain to file");	
+	}	
+	if (EXTRACT_HAMMER)
+	{
+		wt = extractWavetable(file, f0, targetPitch, "hammer");
+		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 125 + "_vh" + 125 + file.toString(2);
+		saveAudio(outputWG.getChildFile(fileName), wt);
+		Console.print("Wrote Hammer to file");	
 	}
 	if (EXTRACT_NATURALHARMONIC)
 	{
@@ -273,7 +308,7 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup, righ
 		saveAudio(outputWG.getChildFile(fileName), wt);
 		Console.print("Wrote Palm Mute to file");			
 	}	
-
+	
 	// Finish worker process
 	worker.setProgress(1.0);
 	PENDING = false;			

@@ -20,6 +20,7 @@ const EXTRACT_SUSTAIN = true;
 const EXTRACT_PALMMUTE = true;
 const EXTRACT_NATURALHARMONIC = true;
 const EXTRACT_PINCHHARMONIC = true;
+const EXTRACT_HAMMER = true;
 const USEMANUALTUNING = false;
 const STEREO_INSTRUMENT = true;
 
