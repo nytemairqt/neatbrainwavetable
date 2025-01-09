@@ -15,14 +15,14 @@ const SAMPLES_FX_LEFT = SAMPLES.createDirectory("fxLeft");
 const SAMPLES_FX_RIGHT = SAMPLES.createDirectory("fxRight");
 
 // HYPERPAMETERS
-const EXTRACT_RESIDUE = true;
-const EXTRACT_SUSTAIN = true;
+const EXTRACT_RESIDUE = false;
+const EXTRACT_SUSTAIN = false;
 const EXTRACT_PALMMUTE = true;
-const EXTRACT_NATURALHARMONIC = true;
-const EXTRACT_PINCHHARMONIC = true;
-const EXTRACT_HAMMER = true;
-const USEMANUALTUNING = false;
-const STEREO_INSTRUMENT = true;
+const EXTRACT_NATURALHARMONIC = false;
+const EXTRACT_PINCHHARMONIC = false;
+const EXTRACT_HAMMER = false;
+const USEMANUALTUNING = true;
+const STEREO_INSTRUMENT = false;
 
 const PITCH_START = 0.1;
 const PITCH_END = 0.8;
@@ -32,15 +32,14 @@ const LOOP_START = 0.3;
 const FADE_TIME = 15;
 const SAMPLERATE = 44100.0;
 const NUM_ROUNDROBINS = 15;
-const keyRange = [12, 17, 22, 27, 32, 37, 42, 47, 52, 57, 62, 67, 72, 77, 82, 88];
+//const keyRange = [12, 17, 22, 27, 32, 37, 42, 47, 52, 57, 62, 67, 72, 77, 82, 88];
+const keyRange = [42];
 reg PENDING = false;
 reg TARGET = 440.0;
 
 // TUNINGS
-//const MANUAL_TUNING = 659.4; //gtr e string 12
-//const MANUAL_TUNING = 1318.8; //gtr e string 24
-//const MANUAL_TUNING = 87.2; // bs c string 5
-const MANUAL_TUNING = 130.8; // bs c string 12
+//const MANUAL_TUNING = 55.0; // bass guitar
+const MANUAL_TUNING = 82.0;
 
 // INCLUDES
 include("lorisFunctions.js");
@@ -54,7 +53,8 @@ inline function onbtnExtractWaveguidesControl(component, value)
 	{
 		// Left Side (Or Mono)
 		local audioFiles = FileSystem.findFiles(AUDIOFILES.getChildFile("left"), "*.wav", false);
-		for (i=0; i<audioFiles.length; i++) // For each audio file
+		//for (i=0; i<audioFiles.length; i++) // For each audio file
+		for (i=0; i<5; i++)
 		{
 			for (j=0; j<keyRange.length; j++) // For each registered key
 			{

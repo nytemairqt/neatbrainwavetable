@@ -126,11 +126,11 @@ inline function sculptPalmMute(obj)
 	local min = 20.0;
 	local max = 20000.0;	
 	local crossover = TARGET;
-
+	
 	if (obj.frequency > crossover && obj.frequency < max) 
 	{
 		local globalCoefficient = 1.0;
-		local distanceCoefficient = 0.007; // more aggressive dampening
+		local distanceCoefficient = 0.005;
 		local spectralDistance = obj.frequency - crossover;
 		local attenuation = Math.exp(-spectralDistance * distanceCoefficient);
 		obj.gain *= attenuation;		
@@ -216,6 +216,7 @@ inline function extractWavetable(file, f0, targetPitch, articulation)
 			break;
 		default:
 	}	
+	
 	wt = lorisManager.synthesise(file);
 	wt = wt[0]; // grab the buffer
 
@@ -284,8 +285,8 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup, righ
 		wt = extractWavetable(file, f0, targetPitch, "sustain");
 	
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 65 + "_vh" + 124 + file.toString(2);
-		saveAudio(outputWG.getChildFile(fileName), wt);	
-		Console.print("Wrote Sustain to file");	
+		saveAudio(outputWG.getChildFile(fileName), wt);			
+		Console.print("Wrote Sustain to file" + outputWG + fileName);	
 	}	
 	if (EXTRACT_HAMMER)
 	{
