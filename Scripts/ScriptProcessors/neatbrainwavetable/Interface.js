@@ -32,8 +32,7 @@ const LOOP_START = 0.3;
 const FADE_TIME = 15;
 const SAMPLERATE = 44100.0;
 const NUM_ROUNDROBINS = 15;
-//const keyRange = [12, 17, 22, 27, 32, 37, 42, 47, 52, 57, 62, 67, 72, 77, 82, 88];
-const keyRange = [42];
+const keyRange = [12, 17, 22, 27, 32, 37, 42, 47, 52, 57, 62, 67, 72, 77, 82, 88];
 reg PENDING = false;
 reg TARGET = 440.0;
 
@@ -53,8 +52,7 @@ inline function onbtnExtractWaveguidesControl(component, value)
 	{
 		// Left Side (Or Mono)
 		local audioFiles = FileSystem.findFiles(AUDIOFILES.getChildFile("left"), "*.wav", false);
-		//for (i=0; i<audioFiles.length; i++) // For each audio file
-		for (i=0; i<5; i++)
+		for (i=0; i<audioFiles.length; i++) // For each audio file
 		{
 			for (j=0; j<keyRange.length; j++) // For each registered key
 			{
