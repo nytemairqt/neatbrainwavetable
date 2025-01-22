@@ -41,3 +41,73 @@ inline function checkRRGroup(fileName)
 	}
 	return rrGroup;
 }
+
+function recombineResidue()
+{
+	
+
+	Engine.extendTimeOut(120000);
+
+	var waveguideFiles = FileSystem.findFiles(SAMPLES_WAVEGUIDE_LEFT, "*.wav", false);
+	var residueFiles = FileSystem.findFiles(SAMPLES_RESIDUE_LEFT, "*.wav", false);
+	var waveguideBuffer;
+	var residueBuffer;
+	var rrGroup;
+	var fileName;
+	
+	worker.setProgress(0.05);
+
+	for (i=0; i<waveguideFiles.length; i++) // for each waveguide
+	{
+		Console.clear();
+
+		waveguideBuffer = waveguideFiles[i].loadAsAudioFile();
+	
+		// Parse Waveguide File to extract Residue RR Group
+		fileName = waveguideFiles[i].toString(3);		
+		rrGroup = checkRRGroup(fileName);
+		
+		// Now load residue and recombine
+		residueBuffer = SAMPLES_RESIDUE_LEFT.getChildFile("residue_" + rrGroup + ".wav").loadAsAudioFile();			
+
+		for (j=0; j<waveguideBuffer.length; j++)
+		{
+			waveguideBuffer[j] = waveguideBuffer[j] + residueBuffer[j];
+		}
+		saveAudio(SAMPLES_OUTPUT_LEFT.getChildFile(fileName), waveguideBuffer);					
+		Console.print("Wrote: " + (i+1) + "/" + waveguideFiles.length);
+	}		
+	
+	worker.setProgress(0.5);
+	
+	if (STEREO_INSTRUMENT)
+	{
+		// Right Side
+		waveguideFiles = FileSystem.findFiles(SAMPLES_WAVEGUIDE_RIGHT, "*.wav", false);
+		residueFiles = FileSystem.findFiles(SAMPLES_RESIDUE_RIGHT, "*.wav", false);
+
+		for (i=0; i<waveguideFiles.length; i++) // for each waveguide
+		{				
+			Console.clear();
+
+			waveguideBuffer = waveguideFiles[i].loadAsAudioFile();
+		
+			// Parse Waveguide File to extract Residue RR Group
+			fileName = waveguideFiles[i].toString(3);		
+			rrGroup = checkRRGroup(fileName);
+			
+			// Now load residue and recombine
+			residueBuffer = SAMPLES_RESIDUE_RIGHT.getChildFile("residue_" + rrGroup + ".wav").loadAsAudioFile();			
+
+			for (j=0; j<waveguideBuffer.length; j++)
+			{
+				waveguideBuffer[j] = waveguideBuffer[j] + residueBuffer[j];
+			}
+
+			saveAudio(SAMPLES_OUTPUT_RIGHT.getChildFile(fileName), waveguideBuffer);					
+			Console.print("Wrote: " + (i+1) + "/" + waveguideFiles.length);
+		}	
+	}
+	
+	worker.setProgress(1.0);
+}

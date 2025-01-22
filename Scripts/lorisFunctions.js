@@ -1,10 +1,7 @@
 // Instantiate Loris engine
 const lorisManager = Engine.getLorisManager();
-const worker = Engine.createBackgroundTask("Loris Processor");
 lorisManager.set("timedomain", "seconds");
 lorisManager.set("enablecache", "false");
-worker.setTimeOut(10000);
-worker.setForwardStatusToLoadingThread(true);
 
 inline function adjustHarmonicGain(partial, freq, target, tolerance, multiplier)
 {
