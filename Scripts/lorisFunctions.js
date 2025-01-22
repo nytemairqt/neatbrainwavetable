@@ -243,6 +243,8 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup, righ
 	var buffer = file.loadAsAudioFile();
 	var f0;		
 	var residue;
+	var residueBuffer;
+	var residuePath;
 	var fileName;
 	var path;
 	var outputRS = right ? SAMPLES_RESIDUE_RIGHT : SAMPLES_RESIDUE_LEFT;
@@ -264,7 +266,6 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup, righ
 			fileName = "residue_" + "rr" + (rrGroup + 1) + ".wav";	
 				
 		// Save extracted residue to residue folder
-		//saveAudio(SAMPLES_RESIDUE.getChildFile(fileName), residue);
 		saveAudio(outputRS.getChildFile(fileName), residue);
 		Console.print("Wrote Residue to file");
 	}
@@ -275,7 +276,7 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup, righ
 	// Now extract the wavetables
 	if (EXTRACT_PALMMUTE)
 	{
-		wt = extractWavetable(file, f0, targetPitch, "palmMute");				
+		wt = extractWavetable(file, f0, targetPitch, "palmMute");
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 1 + "_vh" + 64 + file.toString(2);
 		saveAudio(outputWG.getChildFile(fileName), wt);
 		Console.print("Wrote Palm Mute to file");			
@@ -283,7 +284,6 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup, righ
 	if (EXTRACT_SUSTAIN)
 	{
 		wt = extractWavetable(file, f0, targetPitch, "sustain");
-	
 		fileName = "hz" + Math.round(targetPitch) + "_root" + targetNoteNumber + "_rr" + Math.round(rrGroup + 1) + "_vl" + 65 + "_vh" + 124 + file.toString(2);
 		saveAudio(outputWG.getChildFile(fileName), wt);			
 		Console.print("Wrote Sustain to file" + outputWG + fileName);	
@@ -315,3 +315,15 @@ function extractAllWavetables(file, targetPitch, targetNoteNumber, rrGroup, righ
 	PENDING = false;			
 }
 
+function recombineResidue(waveguidePath, residuePath, rrGroup, right)
+{	
+	var waveguideBuffer = waveguidePath.loadAsAudioFile();
+	var residueBuffer = residuePath.loadAsAudioFile();
+
+	for (i=0; i<waveguideBuffer; i++)
+	{
+		waveguideBuffer[i] = waveguideBuffer[i] + residueBuffer[i];
+	}
+
+	// need to write audio out without overwriting ??? fuck sake
+}

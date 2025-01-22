@@ -8,7 +8,9 @@
       <ChildProcessors>
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0">
           <ChildProcessors/>
-          <Content/>
+          <Content>
+            <Control type="ScriptButton" id="btnRecombineResidues" value="0.0"/>
+          </Content>
           <UIData Source="neatbrainwavetableUIData"/>
         </Processor>
       </ChildProcessors>
